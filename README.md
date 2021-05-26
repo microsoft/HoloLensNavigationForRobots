@@ -1,33 +1,98 @@
-# Project
+# HoloLens ROS Navigation Package
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Overview
 
-As the maintainer of this project, please make a few updates:
+This is HoloLens bridge example for Robot navigation in ROS system. It contains three modules:
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+### HoloLensBridge
+Universal Windows Platform (UWP) application for HoloLens. Communicates with HoloROSBridge.
 
-## Contributing
+### HoloROSBridge
+ROS package of HoloLens brigde.
+Module for using HoloLens in ROS system.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+### HoloLens_Localization
+ROS package including HoloLens Localization module, 
+offline calibration between HoloLens and Robot's head, and online calibration between HoloLens and Robot's base.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+## Prerequisites, installation and build
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Follow instructions in the [setup instructions](Setup/README.md).
 
-## Trademarks
+## Tips
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+General tips aiding in the deployment, handling Pepper, accessing HoloLens, etc can be found [here](/Setup/TIPS.md).
+
+
+## How to use
+
+### Advance Preparation
+Follow instructions how to build and install the map [here](Setup/MAP.md).
+
+Attach HoloLens to Robot's Head (instructions TODO)
+
+### Running Process
+#### HoloLens Stack
+- (HoloLens) Boot HoloLens Bridge
+    - Launch the HoloLensNavigation application from Device Portal (access the HoloLens ip from browser). Or use alternative methods.
+- (ROS) Launch Pepper's stack
+    - `$  roslaunch pepper_bringup pepper_full.launch nao_ip:=<pepper ip> network_interface:=<network interface>`
+    - The local ROS computer's network interface name can be found using the terminal command "ifconfig" and looking for the name associated with the active IP address. Do not include the colon after the network interface.
+    - Ideally start Pepper with life disabled. Use Choregraph or refer to the [tips](/Setup/TIPS.md) document for alternative options.
+- (ROS) Launch HoloLens stack
+    - `$ roslaunch navigation_launcher hololensstack.launch HoloLens_ip:=<hololens ip>`
+    - Note that XTerm needs to be installed for this as the script uses it to interact with the calibration.
+
+#### Navigation Stack
+- (ROS) Launch Navigation program
+    - ```roslaunch navigation_launcher navstack.launch```
+
+#### Calibration
+- in the calibration window:
+    - move Pepper's head into inital/default pose. Use either Choregraph or connect to Pepper via SSH and set the pitch directly:
+      - ```qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3```
+      - ```qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3```
+    - press ```space``` to record the initial position.
+    - move Pepper's head upward. Use either Choregraph or connect to Pepper via SSH and set the pitch directly:
+      - ```qicli call ALMotion.setAngles "HeadPitch" -0.35 0.3```
+    - press ```space``` again to record the new position.
+    - reset Pepper's head pitch and then rotate to left. Use either Choregraph or connect to Pepper via SSH:
+      - ```qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3```
+      - ```qicli call ALMotion.setAngles "HeadYaw" 0.7 0.3```
+    - press ```space``` to record the new position.
+    - rotate Pepper's head to the right. Use either Choregraph or connect to Pepper via SSH:
+      - ```qicli call ALMotion.setAngles "HeadYaw" -0.7 0.3```
+    - press ```space``` to record the new position.
+    - press ```c``` to calibrate.
+    - reset Pepper's head pitch and rotation. Use either Choregraph or connect to Pepper via SSH:
+      - ```qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3```
+      - ```qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3```
+
+#### Navigation
+- (ROS) Launch rviz
+    - `$  rosrun rviz rviz`
+    - add Map and Pepper RobotModel topics. Alternatively, load the [pepper.rviz](rviz/pepper.rviz) rviz configuration file.
+- In rviz, select `2D Pose Estimate` and set Pepper's inital position and direction on the map. Try to be as precise as 
+ possible. The script will calculate a pose estimate and localize the Pepper model.
+- In rviz, select `2D Nav Goal` and select a destination goal and orientation on the map.
+- Pepper navigation will start.
+
+
+
+### Running Process (INDIVIDUAL NODES)
+- Pepper ROS full stack
+  - ```$ roslaunch pepper_bringup pepper_full.launch nao_ip:=<pepper ip> network_interface:=<network interface>```
+  - example: ```roslaunch pepper_bringup pepper_full.launch nao_ip:=10.1.1.202 network_interface:=enp3s0```
+- HoloLens ROS Bridge
+  - ```$ rosrun hololens_ros_bridge hololens_ros_bridge_node <hololens_ip> 1234```
+  - example: ```rosrun hololens_ros_bridge hololens_ros_bridge_node 10.1.1.206 1234```
+- ROS map_server
+  - ```$ rosrun map_server map_server src/navigation_launcher/params/map.yaml```
+- HoloLens Anchor Localizer
+  - ```$ rosrun hololens_localizer anchor_localizer```
+- Localizer Calibration
+  - ```$ rosrun hololens_localizer static_calibration <robot odom frame> <robot head frame> <robot base link> [calibrationFileName]```
+  - example: ```rosrun hololens_localizer static_calibration odom Head base_footprint calibrationData.bin```
+- Dynamic Adjuster
+  - ```$ rosrun hololens_localizer dynamic_adjuster.py <robot foot frame>```
+  - example: ```rosrun hololens_localizer dynamic_adjuster.py```

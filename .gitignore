@@ -1,0 +1,32 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/windows/HoloLensBridge/.vs/HoloLensNavigation/v16
+/linux/navigation_launcher/params/left0000_pointcloud.jpg
+/linux/navigation_launcher/params/left0000.jpg
+/windows/HoloLensBridge/Debug/HoloLensNavigation
+/windows/HoloLensBridge/HoloLensNavigation/Debug
+/windows/HoloLensBridge/HoloLensNavigation/Release
+/windows/HoloLensBridge/packages/Eigen.3.3.3
+/windows/HoloLensBridge/Release/HoloLensNavigation
+/windows/HoloLensBridge/HoloLensNavigation/HoloLensNavigation.vcxproj.user
+/windows/HoloLensBridge/ARM64/Release/HoloLensNavigation
+/windows/HoloLensBridge/HoloLensNavigation/ARM64/Release
+/windows/HoloLensBridge/ARM64/Debug/HoloLensNavigation
+/windows/HoloLensBridge/HoloLensNavigation/ARM64/Debug
+/windows/HoloLensBridge/HoloLensNavigation/x64/Release
+/windows/HoloLensBridge/x64/Release/HoloLensNavigation
+/linux/navigation_launcher/params/left0000 (copy).jpg
+/linux/HoloROSBridge/src/hololens_ros_bridge_node_OLD.cpp
+/windows/HoloLensBridge/ARM/Release/HoloLensNavigation
+/windows/HoloLensBridge/HoloLensNavigation/ARM/Release
+/linux/holo_nav_dash/webSocket.pyc
+/linux/holo_nav_dash/settings.pyc
+/windows/packages/Eigen.3.3.3
+/windows/bin
+/windows/.vs/HoloLensSpatialMapping/v16
+/windows/build
+/windows/.vs/MSRHoloLensSpatialMapping/v16
+/windows/.vs
