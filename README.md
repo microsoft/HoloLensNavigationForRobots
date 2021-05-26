@@ -1,19 +1,29 @@
-# HoloLens ROS Navigation Package
+# HoloLens ROS Navigation System
 
 ## Overview
+The HoloLensNavigation system shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide a self-calibrating indoor navigation solution within a single room. It operates in one of three modes: map generation, position calibration, and navigation.
 
-This is HoloLens bridge example for Robot navigation in ROS system. It contains three modules:
+The sample code implements five modules:
 
-### HoloLensBridge
-Universal Windows Platform (UWP) application for HoloLens. Communicates with HoloROSBridge.
+### HoloLensSpatialMapping
+Universal Windows Platform (UWP) application solution for HoloLens. It contains two projects:
+- HololensSpatialMapping: Uses device sensors to capture and maintain 3D map of local environment
+- HoloLensBridge:  Communicates with HoloROSBridge.
+
+### HoloLens_Localization
+HoloLens_Localization is a ROS (Melodic) package that computes the local position of the robot based on sensor measurements as the robot moves through calibrated poses and navigates through the environment.
+ROS package including HoloLens Localization module, offline calibration between HoloLens and Robot's head, and online calibration between HoloLens and Robot's base.
 
 ### HoloROSBridge
+HoloROSBridge is a ROS (Melodic) package that communicates with the HoloLensSpatialMapping application running on the HoloLens device.
 ROS package of HoloLens brigde.
 Module for using HoloLens in ROS system.
 
-### HoloLens_Localization
-ROS package including HoloLens Localization module, 
-offline calibration between HoloLens and Robot's head, and online calibration between HoloLens and Robot's base.
+### holo_nav_dash
+holo_nav_dash is a ROS (Melodic) package that provides a local http server and a browser-based operational interface for starting up and monitoring calibration and navigation operations.
+
+### navigation_launcher
+navigation_launcher is a ROS (Melodic) package that contains launch scripts for starting up components for the HoloLens stack, the HoloLens Navigation stack, and the ROS Navigation stack.
 
 ## Prerequisites, installation and build
 
