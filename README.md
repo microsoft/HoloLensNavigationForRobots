@@ -79,8 +79,9 @@ The following procedure assumes that a 2D floor map has already been [generated 
     - ```roslaunch navigation_launcher navstack.launch```
 
 #### Calibration
-- in the calibration window:
-    - move Pepper's head into inital/default pose. Use either Choregraph or connect to Pepper via SSH and set the pitch directly:
+- If desired, launch the Dashboard UI using these [instructions](linux/holo_nav_dash/README.md).
+- Alternatively, use the console UI in the calibration window and use either Choregraph or connect to Pepper via SSH and set the pitch directly:
+    - move Pepper's head into inital/default pose. Use 
       - ```qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3```
       - ```qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3```
     - press ```space``` to record the initial position.
@@ -108,8 +109,6 @@ The following procedure assumes that a 2D floor map has already been [generated 
  possible. The script will calculate a pose estimate and localize the Pepper model.
 - In rviz, select `2D Nav Goal` and select a destination goal and orientation on the map.
 - Pepper navigation will start.
-
-
 
 ### Running Process (INDIVIDUAL NODES)
 - Pepper ROS full stack
