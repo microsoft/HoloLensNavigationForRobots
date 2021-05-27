@@ -1,12 +1,15 @@
-# How to build a map
+## ![logo](../img/MARR_logo.png) [Microsoft Applied Robotics Research Library](https://special-giggle-b26bab5f.pages.github.io/)
+### Open Source Samples for Service Robotics
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+
+# Map Generation Instructions
 
 ## HoloLens Spatial Mapping
 
 Use the HoloLens device to build a spatial mapping of your environment. Map the floor up to at least your eye level, 
 and make sure to carefully trace along the floor edges to get accurate readings.
 
-For visual feedback, compile and run the HoloLensNavigation application and complete the spatial mesh mapping. Alternatively,
- compile and run the lighter wieght Microsoft's Holographic spatial mapping sample found 
+For visual feedback, compile and run the HoloLensNavigation application and complete the spatial mesh mapping. Alternatively, compile and run the lighter weight Microsoft's Holographic spatial mapping sample found 
 [here](https://github.com/microsoft/Windows-universal-samples/tree/master/Samples/HolographicSpatialMapping).
 
 ## Create a floor plan image from HoloLens' Spatial Map in ROS

@@ -1,14 +1,16 @@
-# General Tips
+## ![logo](../img/MARR_logo.png) [Microsoft Applied Robotics Research Library](https://special-giggle-b26bab5f.pages.github.io/)
+### Open Source Samples for Service Robotics
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-## HoloLens
+# HoloLens Mounting and Pepper Configuration Instructions
 
-### Device Portal
+## HoloLens Device Portal
 
 Enable Device Portal on the HoloLens device in `Settings->For developers`
 
 Navigate to the HoloLens IP using your web browser and set up a user/password.
 
-#### Certificate Installation
+### Certificate Installation
 Navigate to the HoloLens IP using your web browser and download the HoloLens certificate. Convert and install it:
 
 ```
@@ -18,14 +20,12 @@ $ sudo cp certificate.crt /usr/local/share/ca-certificates
 $ sudo update-ca-certificates
 ```
 
-#### Change or disable HoloLens sleep settings
-Navigate to the HoloLens IP using your web browser and log in with the user/pwd set above. In System->Preferences set sleep 
-settings. To disable, use the browser's inspect feature and add `0` as a list option, then select `0`. Note you will need 
-to do this twice if you want to disable sleep for both `battery` and `plugged-in` settings.
+### Change or disable HoloLens sleep settings
+Navigate to the HoloLens IP using your web browser and log in with the user/pwd set above. In System->Preferences set sleep settings. To disable, use the browser's inspect feature and add `0` as a list option, then select `0`. Note you will need to do this twice if you want to disable sleep for both `battery` and `plugged-in` settings.
 
-## Pepper
+## Pepper Configuration
 
-Using [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands.
+Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell.
 
 ### Start Pepper with autonomous life disabled
 
@@ -35,7 +35,7 @@ Disable Pepper autonomous life mode using Choregraph:
 - Click on blue heart icon in upper right corner.
 - Wake Pepper up by clicking on sunshine icon in upper right corner
  
- Disable Pepper autonomous life mode using `ssh`:
+Disable Pepper autonomous life mode using `ssh`:
 
 ```
 $ ssh nao@<pepper IP>

@@ -1,9 +1,18 @@
+## ![logo](img/MARR_logo.png) [Microsoft Applied Robotics Research Library](https://special-giggle-b26bab5f.pages.github.io/)
+### Open Source Samples for Service Robotics
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+
 # HoloLens ROS Navigation System
+The HoloLensNavigation system shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide a self-calibrating indoor navigation solution.
 
-## Overview
-The HoloLensNavigation system shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide a self-calibrating indoor navigation solution within a single room. It operates in one of three modes: map generation, position calibration, and navigation.
+![HololensNavigation System Diagram](img/HololensNavigation_Hero.png)
 
-The sample code implements five modules:
+
+# How it Works
+## System Diagram
+![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram.png)
+
+## Sample Code Modules:
 
 ### HoloLensSpatialMapping
 Universal Windows Platform (UWP) application solution for HoloLens. It contains two projects:
@@ -25,23 +34,29 @@ holo_nav_dash is a ROS (Melodic) package that provides a local http server and a
 ### navigation_launcher
 navigation_launcher is a ROS (Melodic) package that contains launch scripts for starting up components for the HoloLens stack, the HoloLens Navigation stack, and the ROS Navigation stack.
 
-## Prerequisites, installation and build
+## Modes of Operation
+The system operates in one of three modes: map generation, position calibration, and navigation.
 
-Follow instructions in the [setup instructions](Setup/README.md).
+### Map Capture and Generation Mode
+![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_MapCapture.png)
+### Position Calibration Mode
+![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_PositionCalibration.png)
+### Navigation Mode
+![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_Navigation.png)
 
-## Tips
+## Prerequisites, Installation and Build
+Follow these links for instructions in preparing the system:
+- ### [Setup Instructions](Setup/README.md)
 
-General tips aiding in the deployment, handling Pepper, accessing HoloLens, etc can be found [here](/Setup/TIPS.md).
+- ### [Map Generation Instructions](Setup/MAP.md)
+
+- ### [HoloLens Mounting and Pepper Configuration Instructions](Setup/MountHololens.md)
 
 
-## How to use
-
-### Advance Preparation
-Follow instructions how to build and install the map [here](Setup/MAP.md).
-
-Attach HoloLens to Robot's Head (instructions TODO)
-
-### Running Process
+## Calibration and Navigation Operations
+The following procedure assumes that a 2D floor map has already been [generated and installed](Setup/MAP.md):
+ 
+### Launch System and Perform Calibration
 #### HoloLens Stack
 - (HoloLens) Boot HoloLens Bridge
     - Launch the HoloLensNavigation application from Device Portal (access the HoloLens ip from browser). Or use alternative methods.
@@ -78,7 +93,8 @@ Attach HoloLens to Robot's Head (instructions TODO)
       - ```qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3```
       - ```qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3```
 
-#### Navigation
+
+### Navigation Operations
 - (ROS) Launch rviz
     - `$  rosrun rviz rviz`
     - add Map and Pepper RobotModel topics. Alternatively, load the [pepper.rviz](rviz/pepper.rviz) rviz configuration file.

@@ -1,4 +1,8 @@
-# Prerequisites, installation and build instructions
+## ![logo](../img/MARR_logo.png) [Microsoft Applied Robotics Research Library](https://special-giggle-b26bab5f.pages.github.io/)
+### Open Source Samples for Service Robotics
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+
+# Prerequisites, Installation and Build Instructions
 
 ## Prerequisites
 
