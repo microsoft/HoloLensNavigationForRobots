@@ -39,10 +39,15 @@ The system operates in one of three modes: map generation, position calibration,
 
 ### Map Capture and Generation Mode
 ![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_MapCapture.png)
+Map Capture theory of operation.
+
 ### Position Calibration Mode
 ![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_PositionCalibration.png)
+Calibration Mode theory of operation.
+
 ### Navigation Mode
 ![HololensNavigation System Diagram](img/HololensNavigation_SystemDiagram_Mode_Navigation.png)
+Navigation Mode theory of operation.
 
 ## Prerequisites, Installation and Build
 Follow these links for instructions in preparing the system:
