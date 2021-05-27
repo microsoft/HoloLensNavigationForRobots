@@ -1,0 +1,4 @@
+﻿  HoloLensNavigation.vcxproj -> C:\Users\dbaum\source\ADO_repos\hololens_navigation2\windows\HoloLensBridge\Release\HoloLensNavigation\HoloLensNavigation.exe
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.AppXPackage.Targets(838,5): warning : Certificate file does not exist: HoloLensNavigation_TemporaryKey.pfx
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.AppXPackage.Targets(2697,5): warning APPX0104: Certificate file 'HoloLensNavigation_TemporaryKey.pfx' not found.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VisualStudio\v16.0\AppxPackage\Microsoft.AppXPackage.Targets(2697,5): warning APPX0107: The certificate specified is not valid for signing. For more information about valid certificates, see http://go.microsoft.com/fwlink/?LinkID=241478.

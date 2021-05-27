@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Microsoft Applied Robotics Research Library: HoloLensNavigation</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="..">Microsoft Applied Robotics Research Library: HoloLensNavigation</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#microsoft-applied-robotics-research-library">Microsoft Applied Robotics Research Library</a></li>
+            <li><a href="#open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</a></li>
+        <li class="main "><a href="#prerequisites-installation-and-build-instructions">Prerequisites, Installation and Build Instructions</a></li>
+            <li><a href="#prerequisites">Prerequisites</a></li>
+            <li><a href="#hololens-navigation-installation">Hololens Navigation Installation</a></li>
+            <li><a href="#build">Build</a></li>
+            <li><a href="#hololens-spatial-mapping-application-windows">HoloLens Spatial Mapping application (Windows)</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="microsoft-applied-robotics-research-library"><img alt="logo" src="../img/MARR_logo.png" /> <a href="https://special-giggle-b26bab5f.pages.github.io/">Microsoft Applied Robotics Research Library</a></h2>
+<h3 id="open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> </p>
+<h1 id="prerequisites-installation-and-build-instructions">Prerequisites, Installation and Build Instructions</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="ubuntu-18045-lts">Ubuntu 18.04.5 LTS</h3>
+<p>Install v18 LTS from https://releases.ubuntu.com/18.04/.</p>
+<p>Install XTerm</p>
+<h3 id="ros-melodic">ROS Melodic</h3>
+<p>http://wiki.ros.org/melodic/Installation/Ubuntu.</p>
+<p>Additional ROS packages required:</p>
+<pre><code>$ sudo apt-get install ros-melodic-driver-base
+$ sudo apt-get install ros-melodic-move-base-msgs ros-melodic-octomap ros-melodic-octomap-msgs
+$ sudo apt-get install ros-melodic-map-server
+$ sudo apt-get install ros-melodic-camera-info-manager ros-melodic-camera-info-manager-py
+$ sudo apt-get install ros-melodic-rgbd-launch
+$ sudo apt-get install ros-melodic-husky-navigation
+</code></pre>
+
+<pre><code>$ sudo apt-get install python-catkin-tools
+</code></pre>
+
+<p>Optional:</p>
+<pre><code>$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ros-teleop/teleop_twist_keyboard
+$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<h3 id="ceres-solver">Ceres Solver</h3>
+<p>Install dependecies:</p>
+<pre><code>sudo apt-get install libgoogle-glog-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libeigen3-dev
+</code></pre>
+
+<p>Get Ceres Solver source code, build and install it:</p>
+<pre><code>$ mkdir -p ~/ceres
+$ cd ~/ceres/
+wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
+tar xvf ceres-solver-1.14.0.tar.gz
+mkdir ceres-build &amp;&amp; cd ceres-build
+cmake ../ceres-solver-1.14.0
+make -j3
+sudo make install
+</code></pre>
+
+<h3 id="pepper">Pepper</h3>
+<p>http://wiki.ros.org/pepper</p>
+<pre><code>$ sudo apt-get install ros-melodic-pepper-.*
+$ sudo apt install ros-melodic-naoqi-bridge-msgs ros-melodic-naoqi-libqi ros-melodic-naoqi-driver ros-melodic-naoqi-libqicore
+</code></pre>
+
+<p>Download python SDK from https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux. </p>
+<p>Extract <code>pynaoqi-python2.7-2.5.7.1-linux64.tar.gz</code> to <code>~/nao</code></p>
+<p>Add naoqi python pythonSDK path to .bashrc:</p>
+<pre><code>$ echo &quot;export PYTHONPATH=${PYTHONPATH}:~/nao/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>Source packages:</p>
+<pre><code>$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ros-naoqi/naoqi_dcm_driver
+$ git clone https://github.com/ros-naoqi/naoqi_bridge
+$ git clone https://github.com/ros-naoqi/pepper_robot
+$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<p>Disable audio in boot configuration file (set flag in line 85 from true to false):</p>
+<pre><code>$ sudo gedit /opt/ros/melodic/share/naoqi_driver/share/boot_config.json
+</code></pre>
+
+<p>Optional:</p>
+<p>Install Choregraph.</p>
+<p>If Choregraph fails to start, try:</p>
+<pre><code>sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
+</code></pre>
+
+<h2 id="hololens-navigation-installation">Hololens Navigation Installation</h2>
+<p>Copy <code>HoloROSBridge</code> to <code>~/catkin_ws/src/HoloROSBridge</code></p>
+<p>Copy <code>HoloLens_Localization</code> to <code>~/catkin_ws/src/HoloLens_Localization</code></p>
+<p>Copy <code>navigation_launcher</code> to <code>~/catkin_ws/src/navigation_launcher</code></p>
+<pre><code>$ cd ~/catkin_ws/src/HoloLens_Localization/scripts
+$ chown $USER:$USER dynamic_adjuster.py
+$ chmod +x dynamic_adjuster.py
+$ chown $USER:$USER localizer.py
+$ chmod +x localizer.py
+</code></pre>
+
+<h2 id="build">Build</h2>
+<pre><code>$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<h2 id="hololens-spatial-mapping-application-windows">HoloLens Spatial Mapping application (Windows)</h2>
+<p>Enable development mode on HoloLens. Pair device with PC. Enable Device Portal.</p>
+<p>Install Visual Studio 2019 with Universal Windows Platform build environment.  </p>
+<p>After loading the solution in Visual Studio for the first time, navigate to 
+<code>Tools</code>-&gt;<code>NuGet Package Manager</code>-&gt;<code>Package Manager Console</code>. If 
+you see a message "Some NuGet packages are missing from this solution...", 
+click on <code>Restore</code> to download and install the missing <code>Eigen</code> package.
+At the time of development, v3.3.3 of Eigen was used for this solution.</p>
+<p>For HoloLens generation 1: build with "Solution Configure:Release", "Solution Platform: x86"<br />
+For HoloLens generation 2: build with "Solution Configure:Release", "Solution Platform: ARM64" </p>
+<p>If HoloLens device is connected via USB:</p>
+<p><img alt="Config" src="images/config.png" /></p>
+<p>Deploy target: "Device"</p>
+<p>If HoloLens is connected via WiFi, deploy target using Remote Machine settings.</p>
+<p>Deploy information: https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-visual-studio</p>
+<p>After launching the application, you can air-tap to toggle between wirefreame and solid model render mode.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2021-05-27 18:51:48
+-->

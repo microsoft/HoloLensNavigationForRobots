@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Microsoft Applied Robotics Research Library: HoloLensNavigation</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href=".">Microsoft Applied Robotics Research Library: HoloLensNavigation</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#microsoft-applied-robotics-research-library">Microsoft Applied Robotics Research Library</a></li>
+            <li><a href="#open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</a></li>
+        <li class="main "><a href="#hololens-ros-navigation-system">HoloLens ROS Navigation System</a></li>
+        <li class="main "><a href="#how-it-works">How it Works</a></li>
+            <li><a href="#system-diagram">System Diagram</a></li>
+            <li><a href="#sample-code-modules">Sample Code Modules:</a></li>
+            <li><a href="#modes-of-operation">Modes of Operation</a></li>
+            <li><a href="#prerequisites-installation-and-build">Prerequisites, Installation and Build</a></li>
+            <li><a href="#calibration-and-navigation-operations">Calibration and Navigation Operations</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="microsoft-applied-robotics-research-library"><img alt="logo" src="img/MARR_logo.png" /> <a href="https://special-giggle-b26bab5f.pages.github.io/">Microsoft Applied Robotics Research Library</a></h2>
+<h3 id="open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> </p>
+<h1 id="hololens-ros-navigation-system">HoloLens ROS Navigation System</h1>
+<p>The HoloLensNavigation system shows how a <a href="https://www.microsoft.com/en-us/hololens">HoloLens</a> device can be placed on the head of <a href="https://us.softbankrobotics.com/pepper">Pepper robot</a> and provide a self-calibrating indoor navigation solution.</p>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_Hero.png" /></p>
+<h1 id="how-it-works">How it Works</h1>
+<h2 id="system-diagram">System Diagram</h2>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram.png" /></p>
+<h2 id="sample-code-modules">Sample Code Modules:</h2>
+<h3 id="hololensspatialmapping">HoloLensSpatialMapping</h3>
+<p>Universal Windows Platform (UWP) application solution for HoloLens. It contains two projects:
+- HololensSpatialMapping: Uses device sensors to capture and maintain 3D map of local environment
+- HoloLensBridge:  Communicates with HoloROSBridge.</p>
+<h3 id="hololens_localization">HoloLens_Localization</h3>
+<p>HoloLens_Localization is a ROS (Melodic) package that computes the local position of the robot based on sensor measurements as the robot moves through calibrated poses and navigates through the environment.
+ROS package including HoloLens Localization module, offline calibration between HoloLens and Robot's head, and online calibration between HoloLens and Robot's base.</p>
+<h3 id="holorosbridge">HoloROSBridge</h3>
+<p>HoloROSBridge is a ROS (Melodic) package that communicates with the HoloLensSpatialMapping application running on the HoloLens device.
+ROS package of HoloLens brigde.
+Module for using HoloLens in ROS system.</p>
+<h3 id="holo_nav_dash">holo_nav_dash</h3>
+<p>holo_nav_dash is a ROS (Melodic) package that provides a local http server and a browser-based operational interface for starting up and monitoring calibration and navigation operations.</p>
+<h3 id="navigation_launcher">navigation_launcher</h3>
+<p>navigation_launcher is a ROS (Melodic) package that contains launch scripts for starting up components for the HoloLens stack, the HoloLens Navigation stack, and the ROS Navigation stack.</p>
+<h2 id="modes-of-operation">Modes of Operation</h2>
+<p>The system operates in one of three modes: map generation, position calibration, and navigation.</p>
+<h3 id="map-capture-and-generation-mode">Map Capture and Generation Mode</h3>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_MapCapture.png" />
+Map Capture theory of operation.</p>
+<h3 id="position-calibration-mode">Position Calibration Mode</h3>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_PositionCalibration.png" />
+Calibration Mode theory of operation.</p>
+<h3 id="navigation-mode">Navigation Mode</h3>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_Navigation.png" />
+Navigation Mode theory of operation.</p>
+<h2 id="prerequisites-installation-and-build">Prerequisites, Installation and Build</h2>
+<p>Follow these links for instructions in preparing the system:</p>
+<ul>
+<li>
+<h3 id="setup-instructions"><a href="Setup/">Setup Instructions</a></h3>
+</li>
+<li>
+<h3 id="map-generation-instructions"><a href="Setup/MAP/">Map Generation Instructions</a></h3>
+</li>
+<li>
+<h3 id="hololens-mounting-and-pepper-configuration-instructions"><a href="Setup/MountHololens/">HoloLens Mounting and Pepper Configuration Instructions</a></h3>
+</li>
+</ul>
+<h2 id="calibration-and-navigation-operations">Calibration and Navigation Operations</h2>
+<p>The following procedure assumes that a 2D floor map has already been <a href="Setup/MAP/">generated and installed</a>:</p>
+<h3 id="launch-system-and-perform-calibration">Launch System and Perform Calibration</h3>
+<h4 id="hololens-stack">HoloLens Stack</h4>
+<ul>
+<li>(HoloLens) Boot HoloLens Bridge<ul>
+<li>Launch the HoloLensNavigation application from Device Portal (access the HoloLens ip from browser). Or use alternative methods.</li>
+</ul>
+</li>
+<li>(ROS) Launch Pepper's stack<ul>
+<li><code>$  roslaunch pepper_bringup pepper_full.launch nao_ip:=&lt;pepper ip&gt; network_interface:=&lt;network interface&gt;</code></li>
+<li>The local ROS computer's network interface name can be found using the terminal command "ifconfig" and looking for the name associated with the active IP address. Do not include the colon after the network interface.</li>
+<li>Ideally start Pepper with life disabled. Use Choregraph or refer to the <a href="/Setup/TIPS.md">tips</a> document for alternative options.</li>
+</ul>
+</li>
+<li>(ROS) Launch HoloLens stack<ul>
+<li><code>$ roslaunch navigation_launcher hololensstack.launch HoloLens_ip:=&lt;hololens ip&gt;</code></li>
+<li>Note that XTerm needs to be installed for this as the script uses it to interact with the calibration.</li>
+</ul>
+</li>
+</ul>
+<h4 id="navigation-stack">Navigation Stack</h4>
+<ul>
+<li>(ROS) Launch Navigation program<ul>
+<li><code>roslaunch navigation_launcher navstack.launch</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="calibration">Calibration</h4>
+<ul>
+<li>If desired, launch the Dashboard UI using these <a href="linux/holo_nav_dash/">instructions</a>.</li>
+<li>Alternatively, use the console UI in the calibration window and use either Choregraph or connect to Pepper via SSH and set the pitch directly:<ul>
+<li>move Pepper's head into inital/default pose. Use </li>
+<li><code>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3</code></li>
+<li><code>qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3</code></li>
+<li>press <code>space</code> to record the initial position.</li>
+<li>move Pepper's head upward. Use either Choregraph or connect to Pepper via SSH and set the pitch directly:</li>
+<li><code>qicli call ALMotion.setAngles "HeadPitch" -0.35 0.3</code></li>
+<li>press <code>space</code> again to record the new position.</li>
+<li>reset Pepper's head pitch and then rotate to left. Use either Choregraph or connect to Pepper via SSH:</li>
+<li><code>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3</code></li>
+<li><code>qicli call ALMotion.setAngles "HeadYaw" 0.7 0.3</code></li>
+<li>press <code>space</code> to record the new position.</li>
+<li>rotate Pepper's head to the right. Use either Choregraph or connect to Pepper via SSH:</li>
+<li><code>qicli call ALMotion.setAngles "HeadYaw" -0.7 0.3</code></li>
+<li>press <code>space</code> to record the new position.</li>
+<li>press <code>c</code> to calibrate.</li>
+<li>reset Pepper's head pitch and rotation. Use either Choregraph or connect to Pepper via SSH:</li>
+<li><code>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3</code></li>
+<li><code>qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="navigation-operations">Navigation Operations</h3>
+<ul>
+<li>(ROS) Launch rviz<ul>
+<li><code>$  rosrun rviz rviz</code></li>
+<li>add Map and Pepper RobotModel topics. Alternatively, load the <a href="rviz/pepper.rviz">pepper.rviz</a> rviz configuration file.</li>
+</ul>
+</li>
+<li>In rviz, select <code>2D Pose Estimate</code> and set Pepper's inital position and direction on the map. Try to be as precise as 
+ possible. The script will calculate a pose estimate and localize the Pepper model.</li>
+<li>In rviz, select <code>2D Nav Goal</code> and select a destination goal and orientation on the map.</li>
+<li>Pepper navigation will start.</li>
+</ul>
+<h3 id="running-process-individual-nodes">Running Process (INDIVIDUAL NODES)</h3>
+<ul>
+<li>Pepper ROS full stack</li>
+<li><code>$ roslaunch pepper_bringup pepper_full.launch nao_ip:=&lt;pepper ip&gt; network_interface:=&lt;network interface&gt;</code></li>
+<li>example: <code>roslaunch pepper_bringup pepper_full.launch nao_ip:=10.1.1.202 network_interface:=enp3s0</code></li>
+<li>HoloLens ROS Bridge</li>
+<li><code>$ rosrun hololens_ros_bridge hololens_ros_bridge_node &lt;hololens_ip&gt; 1234</code></li>
+<li>example: <code>rosrun hololens_ros_bridge hololens_ros_bridge_node 10.1.1.206 1234</code></li>
+<li>ROS map_server</li>
+<li><code>$ rosrun map_server map_server src/navigation_launcher/params/map.yaml</code></li>
+<li>HoloLens Anchor Localizer</li>
+<li><code>$ rosrun hololens_localizer anchor_localizer</code></li>
+<li>Localizer Calibration</li>
+<li><code>$ rosrun hololens_localizer static_calibration &lt;robot odom frame&gt; &lt;robot head frame&gt; &lt;robot base link&gt; [calibrationFileName]</code></li>
+<li>example: <code>rosrun hololens_localizer static_calibration odom Head base_footprint calibrationData.bin</code></li>
+<li>Dynamic Adjuster</li>
+<li><code>$ rosrun hololens_localizer dynamic_adjuster.py &lt;robot foot frame&gt;</code></li>
+<li>example: <code>rosrun hololens_localizer dynamic_adjuster.py</code></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2021-05-27 18:51:47
+-->

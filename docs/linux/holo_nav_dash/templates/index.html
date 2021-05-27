@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hololens Navigation Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
+    <link type="text/css" rel="Stylesheet" href="static/main.css" />
+
+    <script>
+        var dev_version = '' + Math.floor(Math.random() * 100000);
+        var js_files = ['websocket', 'app'];
+
+        for (var i = 0; i < js_files.length; i++) {
+            document.write('<script src="static/js/' + js_files[i] + '.js?rand=' + dev_version + '"\><\/script>');
+        }
+    </script>
+
+    <style>
+        table, th, td {
+            border: 0px solid lightgray;
+            border-collapse: collapse;
+        }
+
+        .btnStart {
+            font-size: .800em;        
+            margin-left: 18px;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            padding: 0px 2px 0px 4px;
+        }
+
+        .iStart {
+            font-size: .800em;        
+            margin-left: 0;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            padding-left: 0;
+            padding-top: 0;
+            padding-right: 0;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+
+<body style="touch-action: none;" onload="onBodyLoad()">
+    <table style="border: none">
+        <tr>
+            <td width="64px"><img src="static/images/Logo_RobotHandshake.png" width="64px" /></td>
+            <td align="left">
+                <div>
+                    <div style="font-size: 1.8em; font-family: 'Open Sans'; font-weight: bold; margin-bottom: -0.3em"><a href="https://github.com/microsoft/"></a>Microsoft Applied Robotics Research Library</a></div><br />
+                    <div style="font-size: 1.5em; font-family: 'Open Sans'; font-weight: normal; margin-top: -0.3em">Hololens Navigation Dashboard</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="float: left;" align="left">
+        <!--   ----------------------------------------  -->
+        <!--   Status Table                              -->
+        <!--   ----------------------------------------  -->
+        <fieldset>
+            <legend>Required ROS Nodes</legend>
+            <div>
+                <table width="100%">
+                    <tr><td colspan="2" width="70%">Pepper ROS Stack</td><td><div id="lblPepperRobot" style="text-align: right;">unknown</div></td><td><button id="btnStartPepper" class="btnStart"><i id="toggleBtnPepper" class="fa fa-play" class="iStart"></i></button></td></tr>
+                    <tr><td colspan="2">HoloLens ROS Bridge</td><td><div id="lblHololensROSBridge" style="text-align: right;">unknown</div></td><td><button id="btnStartBridge" class="btnStart"><i id="toggleBtnBridge" class="fa fa-play" class="iStart"></i></button></td></tr>
+                    <tr style="color: darkgray;"><td width="5%"></td><td width="65%">Sequence</td><td><div id="lblHololensSequence" style="text-align: right;">-</div></td></tr>
+                    <tr><td colspan="2">Anchor Localizer</td><td><div id="lblAnchorLocalizer" style="text-align: right;">unknown</div></td><td><button id="btnStartAnchor" class="btnStart"><i id="toggleBtnAnchor" class="fa fa-play" class="iStart"></i></button></td></tr>
+                    <tr><td colspan="2">Static Calibration</td><td><div id="lblStaticCalibration" style="text-align: right;">unknown</div></td><td><button id="btnStartCalibration" class="btnStart"><i id="toggleBtnCalibration" class="fa fa-play" class="iStart"></i></button></td></tr>
+                    <tr><td colspan="2">Dynamic Adjuster</td><td><div id="lblDynamicAdjuster" style="text-align: right;">unknown</div></td><td><button id="btnStartAdjuster" class="btnStart"><i id="toggleBtnAdjuster" class="fa fa-play" class="iStart"></i></button></td></tr>
+                    <tr><td colspan="2">Localizer</td><td><div id="lblLocalizer" style="text-align: right;">unknown</div></td><td><button id="btnStartLocalizer" class="btnStart"><i id="toggleBtnLocalizer" class="fa fa-play" class="iStart"></i></button></td></tr>
+                </table>
+            </div>
+        </fieldset>
+        <!--   ----------------------------------------  -->
+        <!--   HoloLens Calibration                      -->
+        <!--   ----------------------------------------  -->
+        <!-- <fieldset>
+            <legend>HoloLens Calibration</legend>
+            <div>
+                <table style="width: 100%">
+                    <tr>
+                        <td><button type="button" id="btnHoloLensCalibration">Auto HoloLens Calibration</button></td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset> -->
+        <!--   ----------------------------------------  -->
+        <!--   Application controls                      -->
+        <!--   ----------------------------------------  -->
+        <fieldset>
+            <legend>Application</legend>
+            <div>
+                <table style="width: 100%">
+                    <tr>
+                        <td><button type="button" id="btnExitApp">Exit Dashboard</button></td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+        <!--   ----------------------------------------  -->
+        <!--   status / log window                       -->
+        <!--   ----------------------------------------  -->
+        <fieldset style="background: #e8e8e8;">
+            <legend>Status</legend>
+            <div id="lblStatus" style="width:512px; height: 200px; overflow-y: auto; background: #e8e8e8; padding: 0px;"></div>
+        </fieldset>
+    </div>
+</body>
+</html>

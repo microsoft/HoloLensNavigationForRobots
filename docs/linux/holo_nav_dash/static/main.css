@@ -1,0 +1,98 @@
+
+@import url(https://fonts.googleapis.com/css?family=Lato:700italic,400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+    <input id="btn" class="customBtn" type="button" value="Your Text Here" onclick="" />
+*/
+input.customBtn {
+    font-size: .825em;
+    font-weight: 700;
+    padding: .35em 1em;
+    background-color: #eaeef1;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.1));
+    border: #c0c0c0;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    outline: none;
+    color: rgba(0,0,0,.5);
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(255,255,255,.7);
+}
+
+input.customBtn:hover, input.customBtn.hover {
+    background-color: #fff;
+}
+
+input.customBtn:active, input.customBtn.active {
+    background-color: #d0d3d6;
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,0));
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
+}
+
+/*
+
+*/
+.butt {
+    font-size: .825em;
+    text-decoration: none;
+    font-weight: 700;
+    padding: .35em 1em;
+    background-color: #eaeef1;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.1));
+    border-radius: 3px;
+    color: rgba(0,0,0,.6);
+    text-shadow: 0 1px 1px rgba(255,255,255,.7);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2), inset 0 1px 2px rgba(255,255,255,.7);
+}
+
+.butt:hover, .butt.hover {
+    background-color: #fff;
+}
+
+.butt:active, .butt.active {
+    background-color: #d0d3d6;
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,0));
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2), inset 0 2px 5px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.2);
+}
+
+:root {
+    --background:#f9f9f9;
+    --foreground:#2c3e50;
+
+    --foreground-light:#34495e;
+
+    --size:50px;
+    --ratio:1.2;
+
+    --transition-time:0.3s;
+}
+
+body {
+    background: var(--background);
+    font-family: Droid Sans Mono;
+    font-size: 10pt;
+    text-align: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: var(--foreground-light);
+    letter-spacing: 2px;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+.headline {
+    display: block;
+    color: var(--foreground);
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+}
+
