@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 # HoloLens ROS Navigation System
-The HoloLensNavigation system shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide a self-calibrating indoor navigation solution.
+The HoloLensNavigation system shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide a self-calibrating indoor navigation solution. The calibration process is described in the paper: [Dynamic Calibration between a Mobile Robot and SLAM Device for Navigation](https://www.cvl.iis.u-tokyo.ac.jp/data/uploads/papers/Ishikawa_SLAMDevice_ROMAN2019.pdf)
 
 ![HololensNavigation System Diagram](img/HololensNavigation_Hero.png)
 
