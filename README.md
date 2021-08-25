@@ -9,7 +9,7 @@ The example system in this repository shows how a [HoloLens](https://www.microso
 # System Overview
 The system is comprised of four major hardware components that run the software code modules and operates in one of three operational modes.
 
-![HololensNavigation System Hardware](img/HololensNavigation_HardwarePhoto.png)
+![HoloLensNavigation System Hardware](img/HoloLensNavigation_HardwarePhoto.png)
 
 ## Hardware Devices:
 - **HoloLens** - battery-powered mobile computer hosting camera and depth sensors used for map capture and localization
