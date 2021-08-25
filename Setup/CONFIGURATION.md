@@ -13,31 +13,32 @@ Assembly Steps:
 ![HololensNavigation Joint Key Storage](../img/HoloLensNavigation_JointKeyStorage.jpg) 
 
  - Use the joint-release key to remove the access-cover on the back of the robot's head by inserting it into the two holes below the cover:
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_RemoveHeadPlate.jpg) 
+![HololensNavigation Remove Head Plate](../img/HoloLensNavigation_RemoveHeadPlate.jpg) 
 
  - Make a head back strap with adhesive velcro by cutting 10-inch strips of both the hook and loop sides and sticking their adhesive sides together.  Attach the strap by slipping it between the flexible fan housing and the head-cover support beam:
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_MountHeadBackStrap.jpg) 
+![HololensNavigation Mount Head Back Strap](../img/HoloLensNavigation_MountHeadBackStrap.jpg) 
 
  - Affix a 2.5 inch and a 3.5 inch adhesive velcro loop pad to the top of the robot's head in the positions shown:
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_MountHeadPads.jpg) 
+![HololensNavigation Mount Head Pads](../img/HoloLensNavigation_MountHeadPads.jpg) 
 
  - Set the HoloLens device over the robot's head and open the head-band adjust band all the way by rotating the knob all the way to the left:
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_BandAdjust.jpg) 
+![HololensNavigation Head Band Adjust](../img/HoloLensNavigation_BandAdjust.jpg) 
 
  - Secure the back of the HoloLens device to the back of the robot's head by tightly creating a closed loop with the two-sided Velcro head strap.
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_HeadStrap.jpg) 
+![HololensNavigation RVIZ Config File](../img/HoloLensNavigation_HeadStrap.jpg) 
 
  - Make a second mount strap by creating a 2.5 inch two-sided Velcro strip and securing it over the loop surface of both the HoloLens headstrap and rear mounting pad.
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_HeadPadRear.jpg) 
+![HololensNavigation Rear Head Pad](../img/HoloLensNavigation_HeadPadRear.jpg) 
 
  - Make a third mount strap by creating a 3.5 inch two-sided Velcro strip and securing it over the loop surface of both the HoloLens headstrap and front mounting pad and bringing over the hook side of the HoloLens headstrap to the loop side of the same strap:
-![HololensNavigation RVIZ Config File](../img/HololensNavigation_HeadPadFront.jpg) 
+![HololensNavigation Front Head Pad](../img/HoloLensNavigation_HeadPadFront.jpg) 
 
 ## HoloLens Device Portal
 
-Enable Device Portal on the HoloLens device in `Settings->For developers`
+- Enable Device Portal on the HoloLens device in `Settings->For developers`
 
-Navigate to the HoloLens IP using your web browser and set up a user/password.
+- Navigate to the HoloLens IP using your web browser and set up a user/password.
+![HololensNavigation Device Portal](../img/HoloLensNavigation_DevicePortal.png) 
 
 ## Certificate Installation
 Navigate to the HoloLens IP using your web browser and download the HoloLens certificate. Convert and install it:
