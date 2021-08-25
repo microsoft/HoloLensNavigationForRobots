@@ -1,1 +1,0 @@
-C:\Users\dbaum\source\ADO_repos\hololens_navigation2\windows\HoloLensBridge\HoloLensNavigation\HoloLensNavigation.vcxproj;arm64

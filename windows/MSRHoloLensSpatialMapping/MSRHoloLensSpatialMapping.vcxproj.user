@@ -5,15 +5,15 @@
     <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <DebuggerMachineName>10.1.1.206</DebuggerMachineName>
-    <DebuggerFlavor>WindowsDeviceDebugger</DebuggerFlavor>
+    <DebuggerMachineName>192.168.1.13</DebuggerMachineName>
+    <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <DebuggerMachineName>10.1.1.206</DebuggerMachineName>
     <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <DebuggerMachineName>10.1.1.206</DebuggerMachineName>
+    <DebuggerMachineName>HOLOLENS-8RIQNE</DebuggerMachineName>
     <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
