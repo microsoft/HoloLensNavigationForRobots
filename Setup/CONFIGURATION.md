@@ -10,7 +10,7 @@ The HoloLens device can be conveniently secured to the Pepper robot's head using
 
 Assembly Steps:
  - First, access the Pepper's joint-release key which is stored under the rubber covering near the Emergency Power Off button behind the robot's neck:
-![HololensNavigation RVIZ Config File](../../img/HololensNavigation_JointKeyStorage.jpg) 
+![HololensNavigation Joint Key Storage](../../img/HoloLensNavigation_JointKeyStorage.jpg) 
 
  - Use the joint-release key to remove the access-cover on the back of the robot's head by inserting it into the two holes below the cover:
 ![HololensNavigation RVIZ Config File](../img/HololensNavigation_RemoveHeadPlate.jpg) 
