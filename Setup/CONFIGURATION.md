@@ -38,7 +38,7 @@ Assembly Steps:
 - Enable Device Portal on the HoloLens device in `Settings->For developers`
 
 - Navigate to the HoloLens IP using your web browser and set up a user/password.
-![HololensNavigation Device Portal](../img/HoloLensNavigation_DevicePortal.png) 
+![HololensNavigation Device Portal](../img/HololensNavigation_DevicePortal.png) 
 
 ## Certificate Installation
 Navigate to the HoloLens IP using your web browser and download the HoloLens certificate. Convert and install it:
