@@ -2,21 +2,44 @@
 ### Open Source Samples for Service Robotics
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-# Prerequisites, Installation and Build Instructions
+# Setup and Build Instructions
+This page provides software installation, build, and configuration instructions for the HoloLensNavigationForRobots hardware components including the Navigation PC, the Build PC, the Pepper Robot, and the HoloLens device.
+## Navigation PC
 
-## Prerequisites
+This section is a guide for the software required to be installed, built and configured on the Navigation PC.
 
-### Ubuntu 18.04.5 LTS
+### OS and Pre-requisites
 
-Install v18 LTS from https://releases.ubuntu.com/18.04/.
+To match the platform we test with, prepare a Navigation PC meeting the minimum hardware requirements of the **Ubuntu 18.04.5 LTS** operating system as instructed at:
 
-Install XTerm
+**https://releases.ubuntu.com/18.04/**
+
+We recommend using the "standard download" desktop image for 64-bit PC (AMD64) computers (**ubuntu-18.04.5-desktop-amd64.iso**). This distribution includes a working configuration of Python 2.7 for ROS Melodic and a useful selection of network tools and desktop applications.
+
+Install XTerm to host the terminal console-controlled calibration application:
+```
+$ sudo apt install xterm
+```
+Install dos2unix. This may be required in some cases to remove DOS carriage return characters from script text files:
+```
+$ sudo apt install dos2unix
+```
+Install required Python modules:
+```
+$ sudo apt install python-pip
+$ pip install flask
+$ pip install gevent_websocket
+```
+
+
 
 ### ROS Melodic
 
-http://wiki.ros.org/melodic/Installation/Ubuntu.
+Follow ***all*** of the installation instructions on the following web page for ROS Melodic on Ubuntu 18.04:
 
-Additional ROS packages required:
+**http://wiki.ros.org/melodic/Installation/Ubuntu**
+
+After a successful initial installation, these additional ROS packages required:
 
 ```
 $ sudo apt-get install ros-melodic-driver-base
@@ -25,63 +48,70 @@ $ sudo apt-get install ros-melodic-map-server
 $ sudo apt-get install ros-melodic-camera-info-manager ros-melodic-camera-info-manager-py
 $ sudo apt-get install ros-melodic-rgbd-launch
 $ sudo apt-get install ros-melodic-husky-navigation
-```
-
-```
 $ sudo apt-get install python-catkin-tools
 ```
 
-Optional:
+Optional tool for manually driving the robot:
 
 ```
 $ cd ~/catkin_ws/src/
 $ git clone https://github.com/ros-teleop/teleop_twist_keyboard
+```
+Verify the ROS installation builds with no errors:
+```
 $ cd ~/catkin_ws/
 $ catkin_make
 ```
 
 ### Ceres Solver
+The Ceres Solver provides Python libraries required for computing pathways through the navigation space.
 
-Install dependecies:
+**http://ceres-solver.org**
+
+First, install library dependecies:
 
 ```
-sudo apt-get install libgoogle-glog-dev
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libeigen3-dev
+$ sudo apt-get install libgoogle-glog-dev
+$ sudo apt-get install libatlas-base-dev
+$ sudo apt-get install libeigen3-dev
 ```
 
-Get Ceres Solver source code, build and install it:
+Then, get the Ceres Solver source code, build and install it:
 
 ```
 $ mkdir -p ~/ceres
 $ cd ~/ceres/
-wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
-tar xvf ceres-solver-1.14.0.tar.gz
-mkdir ceres-build && cd ceres-build
-cmake ../ceres-solver-1.14.0
-make -j3
-sudo make install
+$ wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
+$ tar xvf ceres-solver-1.14.0.tar.gz
+$ mkdir ceres-build && cd ceres-build
+$ cmake ../ceres-solver-1.14.0
+$ make -j3
+$ sudo make install
 ```
 
-### Pepper
+### Pepper Naoqi SDK
+General ROS support for the Pepper robot and the Naoqi driver is documented here:
 
-http://wiki.ros.org/pepper
+**http://wiki.ros.org/pepper**
 
+First, install the following ROS packages for Naoqi:
 ```
 $ sudo apt-get install ros-melodic-pepper-.*
 $ sudo apt install ros-melodic-naoqi-bridge-msgs ros-melodic-naoqi-libqi ros-melodic-naoqi-driver ros-melodic-naoqi-libqicore
 ```
 
-Download python SDK from https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux. 
+Then, download and install the Pepper Naoqi Python SDK:
 
-Extract `pynaoqi-python2.7-2.5.7.1-linux64.tar.gz` to `~/nao`
+**https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux**
 
-Add naoqi python pythonSDK path to .bashrc:
+Using the desktop GUI File Manager (or your favorite Linux tool), create a new folder **~/nao** as a destination and extract the file **pynaoqi-python2.7-2.5.7.1-linux64.tar.gz**
+
+Add the Naoqi pythonSDK path to the PYTHONPATH in the .bashrc default shell configuration file:
 ```
 $ echo "export PYTHONPATH=${PYTHONPATH}:~/nao/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages" >> ~/.bashrc
 ```
 
-Source packages:
+Clone the source code packages:
 
 ```
 $ cd ~/catkin_ws/src/
@@ -104,23 +134,41 @@ Disable Autonomous Life (when idle, this service provides dynamic lifelike movem
 "naoqi cmd to disable autonomous life"
 ```
 
-Optional:
+### Choregraph (Optional):
 
-Install Choregraph.
+If desired, the Pepper robot's native programming and configuration application **Choregraphe** can be installed on either the Navigation or Build PC from these webpages:
 
-If Choregraph fails to start, try:
+**https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux**
+
+**https://developer.softbankrobotics.com/pepper-2-5/downloads/pepper-naoqi-25-downloads-windows**
+
+**Tip:**  If Choregraph fails to start on the Navigation PC (linux), try:
 ```
 sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
 ```
 
-## Hololens Navigation Installation
+### Hololens Navigation Project Sample Software
 
-Copy `HoloROSBridge` to `~/catkin_ws/src/HoloROSBridge`
+Using the desktop GUI File Manager (or your favorite Linux tool), download and copy the project sample software for Linux (/linux folder in the repository tree) into the ROS catkin build system:
 
-Copy `HoloLens_Localization` to `~/catkin_ws/src/HoloLens_Localization`
+Copy **HoloLensNavigationForRobots/linux/hololens_ros_bridge** to **~/catkin_ws/src/hololens_ros_bridge**
 
-Copy `navigation_launcher` to `~/catkin_ws/src/navigation_launcher`
+Copy **HoloLensNavigationForRobots/linux/hololens_localization** to **~/catkin_ws/src/hololens_localization**
 
+Copy **HoloLensNavigationForRobots/linux/navigation_launcher** to **~/catkin_ws/src/navigation_launcher**
+
+If needed, the following commands can be used as an example:
+```
+$ cd ~
+$ mkdir repos
+$ cd repos
+$ git clone https://github.com/microsoft/HoloLensNavigationForRobots
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/hololens_ros_bridge/ ~/catkin_ws/src/hololens_ros_bridge/
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/hololens_localization/ ~/catkin_ws/src/hololens_localization/
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/navigation_launcher/ ~/catkin_ws/src/navigation_launcher/
+```
+
+Update ownership and executable-file permissions to allow the Python scripts to run:
 ```
 $ cd ~/catkin_ws/src/HoloLens_Localization/scripts
 $ chown $USER:$USER dynamic_adjuster.py
@@ -129,18 +177,48 @@ $ chown $USER:$USER localizer.py
 $ chmod +x localizer.py
 ```
 
-## Build
-
+Make with catkin to build the packages:
 ```
 $ cd ~/catkin_ws/
 $ catkin_make
 ```
+Source the workspace:
+```
+$ . ~/catkin_ws/devel/setup.bash
+```
+For convenience, all new bash terminals can be set up with this workspace path sourced by default with the following commands:
+```
+$ echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
+```
 
-## HoloLens Spatial Mapping application (Windows)
+## HoloLens Device
+This section is a guide for configuring the HoloLens device to run the project sample software. It assumes that the user is already trained and familiar with basic HoloLens UI operations. If the HoloLens device has been set up to require a user-account to log in, this must be done each time before using the project sample software and prior to mounting the Hololens device on the Pepper robot.  If the configured user session logs out (ie. for a power-saving time-out), it is required to log back in before continuing to use this software.
 
-Enable development mode on HoloLens. Pair device with PC. Enable Device Portal.
+### HoloLens Development Configuration
+The following configuration changes support development on the HoloLens device.  
+ - **Settings/Update/For developers/Developer Mode**, enabling this setting allows the HoloLens device to run non-store and non-signed applications.
+ - **Settings/Update/For developers/Pair**, this control sets up a secure pairing with the Build PC to support deployments of the compiled sample software on the HoloLens device.
+ - **Settings/Update/For developers/Device Portal**, enabling this setting launches a web-server on the HoloLens device providing remote browser-based platform access and application-management controls.
 
-Install Visual Studio 2019 with Universal Windows Platform build environment.  
+**Full instructions** are detailed on this webpage:
+
+**https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-the-windows-device-portal**
+
+
+## Build PC
+This section is a guide for the software required to be installed, built and configured on the Build PC.
+
+### OS and Pre-requisites
+
+To match the platform we test with, prepare a Build PC meeting the minimum hardware requirements of the **Microsoft Windows 10** operating system.
+
+### Visual Studio 2019
+**Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device.  Download and install the free community version (at minimum) following the instructions on this website and selecting options to support the **Universal Windows Platform build environment**:
+
+**https://visualstudio.microsoft.com/downloads/**
+
+### HoloLens Spatial Mapping application (Windows)
 
 After loading the solution in Visual Studio for the first time, navigate to 
 ```Tools```->```NuGet Package Manager```->```Package Manager Console```. If 
