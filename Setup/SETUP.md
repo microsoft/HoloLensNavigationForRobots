@@ -10,7 +10,7 @@ This section is a guide for the software required to be installed, built and con
 
 ### OS and Pre-requisites
 
-To match the platform we test with, prepare a Navigation PC meeting the minimum hardware requirements of the **Ubuntu 18.04.5 LTS** operating system as instructed at:
+To match the platform we test with, prepare an x64 Navigation PC meeting the minimum hardware requirements of the **Ubuntu 18.04.5 LTS** operating system as instructed at:
 
 **https://releases.ubuntu.com/18.04/**
 
@@ -30,8 +30,6 @@ $ sudo apt install python-pip
 $ pip install flask
 $ pip install gevent_websocket
 ```
-
-
 
 ### ROS Melodic
 
@@ -199,47 +197,60 @@ This section is a guide for configuring the HoloLens device to run the project s
 The following configuration changes support development on the HoloLens device.  
  - **Settings/Update/For developers/Developer Mode**, enabling this setting allows the HoloLens device to run non-store and non-signed applications.
  - **Settings/Update/For developers/Pair**, this control sets up a secure pairing with the Build PC to support deployments of the compiled sample software on the HoloLens device.
- - **Settings/Update/For developers/Device Portal**, enabling this setting launches a web-server on the HoloLens device providing remote browser-based platform access and application-management controls.
+ - **Settings/Update/For developers/Device Portal**, enabling this setting launches a web-server on the HoloLens device providing remote browser-based access to platform tools and application-management controls.
 
 **Full instructions** are detailed on this webpage:
 
 **https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-the-windows-device-portal**
-
 
 ## Build PC
 This section is a guide for the software required to be installed, built and configured on the Build PC.
 
 ### OS and Pre-requisites
 
-To match the platform we test with, prepare a Build PC meeting the minimum hardware requirements of the **Microsoft Windows 10** operating system.
+To match the platform we test with, prepare an x64 Build PC meeting the minimum hardware requirements of the **Microsoft Windows 10** operating system.
 
 ### Visual Studio 2019
-**Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device.  Download and install the free community version (at minimum) following the instructions on this website and selecting options to support the **Universal Windows Platform build environment**:
+**Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device. Download and install the free community version (at minimum) following the instructions on this website and selecting options to support the **Universal Windows Platform build environment**:
 
 **https://visualstudio.microsoft.com/downloads/**
 
 ### HoloLens Spatial Mapping application (Windows)
+The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device.
+![green triangle](../img/HoloLensNavigation_VS2019_OpenSolution.png)
 
-After loading the solution in Visual Studio for the first time, navigate to 
-```Tools```->```NuGet Package Manager```->```Package Manager Console```. If 
-you see a message "Some NuGet packages are missing from this solution...", 
-click on ```Restore``` to download and install the missing ```Eigen``` package.
-At the time of development, v3.3.3 of Eigen was used for this solution.
+From the ***windows*** subfolder in the repository, open the file: ***MSRHoloLensSpatialMapping.sln***
+![green triangle](../img/HoloLensNavigation_VS2019_ProjectSolutionFile.png)
 
-For HoloLens generation 1: build with "Solution Configure:Release", "Solution Platform: x86"  
-For HoloLens generation 2: build with "Solution Configure:Release", "Solution Platform: ARM64" 
+After the first-time load of the project solution, check that the required linear algebra package Eigen was successfully installed: 
 
+Navigate to ***Tools -> NuGet Package Manager -> Package Manager Console***
+![green triangle](../img/HoloLensNavigation_VS2019_NuGetPackageManagerConsole.png)
+If you see the following message in the console, click on **Restore** to download and install the missing **Eigen v3.3.3** package.
+```
+Some NuGet packages are missing from this solution...
+``` 
+Build and deploy the application to the HoloLens device by clicking the green triangle ![green triangle](../img/HoloLensNavigation_VS2019_BuildButton.png) build button or selecting ***Build -> Build Solution*** from the menu.
 
-If HoloLens device is connected via USB:
+**For HoloLens 1:**
 
-![Config](images/config.png)
+Build a "Release" solution configuration for "x86" platform.  
+- If the device is connected via USB, choose "Device"
+- If the HoloLens is connected via Wifi, choose "Remote Machine"
+![HoloLens1 build configuration](../img/HoloLensNavigation_VS2019_Build_HoloLens1_x86.png)
 
-Deploy target: "Device"
+**For HoloLens 2:**
 
-If HoloLens is connected via WiFi, deploy target using Remote Machine settings.
+Build a "Release" solution configuration for "ARM64" platform.  
+- If the device is connected via USB, choose "Device"
+- If the HoloLens is connected via Wifi, choose "Remote Machine"
+![HoloLens2 build configuration](../img/HoloLensNavigation_VS2019_Build_HoloLens2_Arm64.png)
 
-Deploy information: https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-visual-studio
+**Full deployment instructions** are detailed on this webpage:
 
-After launching the application, you can air-tap to toggle between wirefreame and solid model render mode.
+**https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-visual-studio**
+
+After launching the application in the visor, a visible mesh of the immediate environment will begin to fill in as the device is moved through the area.  
+- **air-tap** to toggle between **wirefreame** and **solid model** render mode
 
 
