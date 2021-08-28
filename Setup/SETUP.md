@@ -217,19 +217,31 @@ To match the platform we test with, prepare an x64 Build PC meeting the minimum 
 
 ### HoloLens Spatial Mapping application (Windows)
 The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device.
-![green triangle](../img/HololensNavigation_VS2019_OpenSolution.png)
+
+![Open VS Solution](../img/HololensNavigation_VS2019_OpenSolution.png)
 
 From the ***windows*** subfolder in the repository, open the file: ***MSRHoloLensSpatialMapping.sln***
-![green triangle](../img/HololensNavigation_VS2019_ProjectSolutionFile.png)
+
+![Select VS Solution file](../img/HololensNavigation_VS2019_ProjectSolutionFile.png)
 
 After the first-time load of the project solution, check that the required linear algebra package Eigen was successfully installed: 
 
 Navigate to ***Tools -> NuGet Package Manager -> Package Manager Console***
-![green triangle](../img/HololensNavigation_VS2019_NuGetPackageManagerConsole.png)
-If you see the following message in the console, click on **Restore** to download and install the missing **Eigen v3.3.3** package.
+
+![NuGet Package Manager Console](../img/HololensNavigation_VS2019_NuGetPackageManagerConsole.png)
+
+It should appear something like the following:
+
+![Check for Eigen in Package Manager Console](../img/HololensNavigation_VS2019_CheckEigenPackage.png)
+
+However, ff you see the following message in the console:
 ```
 Some NuGet packages are missing from this solution...
 ``` 
+
+Fix it by clicking on the **Restore** button that appears in the UI to download and install the missing **Eigen v3.3.3** package.
+
+
 Build and deploy the application to the HoloLens device by clicking the green triangle ![green triangle](../img/HololensNavigation_VS2019_BuildButton.png) build button or selecting ***Build -> Build Solution*** from the menu.
 
 **For HoloLens 1:**
