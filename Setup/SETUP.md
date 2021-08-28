@@ -129,7 +129,7 @@ $ sudo gedit /opt/ros/melodic/share/naoqi_driver/share/boot_config.json
 Disable Autonomous Life (when idle, this service provides dynamic lifelike movements driven by sensor input, which interferes with the process of mounting the HoloLens device on the robot):
 
 ```
-"naoqi cmd to disable autonomous life"
+ToDo: "naoqi cmd to disable autonomous life"
 ```
 
 ### Choregraph (Optional):
@@ -217,34 +217,34 @@ To match the platform we test with, prepare an x64 Build PC meeting the minimum 
 
 ### HoloLens Spatial Mapping application (Windows)
 The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device.
-![green triangle](../img/HoloLensNavigation_VS2019_OpenSolution.png)
+![green triangle](../img/HololensNavigation_VS2019_OpenSolution.png)
 
 From the ***windows*** subfolder in the repository, open the file: ***MSRHoloLensSpatialMapping.sln***
-![green triangle](../img/HoloLensNavigation_VS2019_ProjectSolutionFile.png)
+![green triangle](../img/HololensNavigation_VS2019_ProjectSolutionFile.png)
 
 After the first-time load of the project solution, check that the required linear algebra package Eigen was successfully installed: 
 
 Navigate to ***Tools -> NuGet Package Manager -> Package Manager Console***
-![green triangle](../img/HoloLensNavigation_VS2019_NuGetPackageManagerConsole.png)
+![green triangle](../img/HololensNavigation_VS2019_NuGetPackageManagerConsole.png)
 If you see the following message in the console, click on **Restore** to download and install the missing **Eigen v3.3.3** package.
 ```
 Some NuGet packages are missing from this solution...
 ``` 
-Build and deploy the application to the HoloLens device by clicking the green triangle ![green triangle](../img/HoloLensNavigation_VS2019_BuildButton.png) build button or selecting ***Build -> Build Solution*** from the menu.
+Build and deploy the application to the HoloLens device by clicking the green triangle ![green triangle](../img/HololensNavigation_VS2019_BuildButton.png) build button or selecting ***Build -> Build Solution*** from the menu.
 
 **For HoloLens 1:**
 
 Build a "Release" solution configuration for "x86" platform.  
 - If the device is connected via USB, choose "Device"
 - If the HoloLens is connected via Wifi, choose "Remote Machine"
-![HoloLens1 build configuration](../img/HoloLensNavigation_VS2019_Build_HoloLens1_x86.png)
+![HoloLens1 build configuration](../img/HololensNavigation_VS2019_Build_HoloLens1_x86.png)
 
 **For HoloLens 2:**
 
 Build a "Release" solution configuration for "ARM64" platform.  
 - If the device is connected via USB, choose "Device"
 - If the HoloLens is connected via Wifi, choose "Remote Machine"
-![HoloLens2 build configuration](../img/HoloLensNavigation_VS2019_Build_HoloLens2_Arm64.png)
+![HoloLens2 build configuration](../img/HololensNavigation_VS2019_Build_HoloLens2_Arm64.png)
 
 **Full deployment instructions** are detailed on this webpage:
 
