@@ -4,11 +4,11 @@
 
 # Setup and Build Instructions
 This page provides software installation, build, and configuration instructions for the HoloLensNavigationForRobots hardware components including the Navigation PC, the Build PC, the Pepper Robot, and the HoloLens device.
-## Navigation PC
+# Navigation PC
 
 This section is a guide for the software required to be installed, built and configured on the Navigation PC.
 
-### OS and Pre-requisites
+## OS and Pre-requisites
 
 To match the platform we test with, prepare an x64 Navigation PC meeting the minimum hardware requirements of the **Ubuntu 18.04.5 LTS** operating system as instructed at:
 
@@ -31,13 +31,13 @@ $ pip install flask
 $ pip install gevent_websocket
 ```
 
-### ROS Melodic
+## ROS Melodic
 
 Follow ***all*** of the installation instructions on the following web page for ROS Melodic on Ubuntu 18.04:
 
 **http://wiki.ros.org/melodic/Installation/Ubuntu**
 
-After a successful initial installation, these additional ROS packages required:
+After a successful initial installation, these additional ROS packages are required:
 
 ```
 $ sudo apt-get install ros-melodic-driver-base
@@ -61,7 +61,7 @@ $ cd ~/catkin_ws/
 $ catkin_make
 ```
 
-### Ceres Solver
+## Ceres Solver
 The Ceres Solver provides Python libraries required for computing pathways through the navigation space.
 
 **http://ceres-solver.org**
@@ -87,7 +87,7 @@ $ make -j3
 $ sudo make install
 ```
 
-### Pepper Naoqi SDK
+## Pepper Naoqi SDK
 General ROS support for the Pepper robot and the Naoqi driver is documented here:
 
 **http://wiki.ros.org/pepper**
@@ -132,7 +132,7 @@ Disable Autonomous Life (when idle, this service provides dynamic lifelike movem
 ToDo: "naoqi cmd to disable autonomous life"
 ```
 
-### Choregraph (Optional):
+## Choregraph (Optional):
 
 If desired, the Pepper robot's native programming and configuration application **Choregraphe** can be installed on either the Navigation or Build PC from these webpages:
 
@@ -145,7 +145,7 @@ If desired, the Pepper robot's native programming and configuration application 
 sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
 ```
 
-### Hololens Navigation Project Sample Software
+## Hololens Navigation Project Sample Software
 
 Using the desktop GUI File Manager (or your favorite Linux tool), download and copy the project sample software for Linux (/linux folder in the repository tree) into the ROS catkin build system:
 
@@ -190,18 +190,30 @@ $ echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
-## HoloLens Device
+# HoloLens Device
 This section is a guide for configuring the HoloLens device to run the project sample software. It assumes that the user is already trained and familiar with basic HoloLens UI operations. If the HoloLens device has been set up to require a user-account to log in, this must be done each time before using the project sample software and prior to mounting the Hololens device on the Pepper robot.  If the configured user session logs out (ie. for a power-saving time-out), it is required to log back in before continuing to use this software.
 
-### HoloLens Development Configuration
+## HoloLens Development Configuration
 The following configuration changes support development on the HoloLens device.  
  - **Settings/Update/For developers/Developer Mode**, enabling this setting allows the HoloLens device to run non-store and non-signed applications.
- - **Settings/Update/For developers/Pair**, this control sets up a secure pairing with the Build PC to support deployments of the compiled sample software on the HoloLens device.
+ - **Settings/Update/For developers/Pair**, this control sets up a secure pairing with the Build PC to support Microsoft Visual Studio deployments of the compiled sample software on the HoloLens device.
  - **Settings/Update/For developers/Device Portal**, enabling this setting launches a web-server on the HoloLens device providing remote browser-based access to platform tools and application-management controls.
 
 **Full instructions** are detailed on this webpage:
 
 **https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-the-windows-device-portal**
+
+## HoloLens Device Portal
+- On the Build PC running Windows, use a browser to navigate to the HoloLens Device Portal by using the IP address of the HoloLens device. Browser security errors will appear. Later, you can install certificates from the device as instructed below, but for this first session click the **Advanced** button to proceed:
+![HololensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_SecurityError.png) 
+- Click the **"Continue to [IP address] (unsafe)"** link:
+![HololensNavigation Device Portal Security Error Advanced](../img/HololensNavigation_DevicePortal_SecurityError_Advanced.png)
+
+-   The first time the portal is accessed, you will be required to set up a username and password as instructed.  The **Views/Apps** page should will look something like this:
+![HololensNavigation Device Portal](../img/HololensNavigation_DevicePortal.png) 
+
+
+
 
 ## Build PC
 This section is a guide for the software required to be installed, built and configured on the Build PC.
@@ -211,12 +223,12 @@ This section is a guide for the software required to be installed, built and con
 To match the platform we test with, prepare an x64 Build PC meeting the minimum hardware requirements of the **Microsoft Windows 10** operating system.
 
 ### Visual Studio 2019
-**Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device. Download and install the free community version (at minimum) following the instructions on this website and selecting options to support the **Universal Windows Platform build environment**:
+**Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device. Download and install the free community version (at minimum) following the instructions on the following website and selecting options to support the **Universal Windows Platform build environment**:
 
 **https://visualstudio.microsoft.com/downloads/**
 
 ### HoloLens Spatial Mapping application (Windows)
-The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device.
+The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device. Clone this repository with your favorite git tools or download and extract the the files into a convenient folder on the Build PC.
 
 ![Open VS Solution](../img/HololensNavigation_VS2019_OpenSolution.png)
 
@@ -234,7 +246,7 @@ It should appear something like the following:
 
 ![Check for Eigen in Package Manager Console](../img/HololensNavigation_VS2019_CheckEigenPackage.png)
 
-However, ff you see the following message in the console:
+However, if you see the following message in the console:
 ```
 Some NuGet packages are missing from this solution...
 ``` 

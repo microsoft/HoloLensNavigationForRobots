@@ -33,26 +33,6 @@ Assembly Steps:
  - Make a third mount strap by creating a 3.5 inch two-sided Velcro strip and securing it over the loop surface of both the HoloLens headstrap and front mounting pad and bringing over the hook side of the HoloLens headstrap to the loop side of the same strap:
 ![HololensNavigation Front Head Pad](../img/HoloLensNavigation_HeadPadFront.jpg) 
 
-## HoloLens Device Portal
-
-- Enable Device Portal on the HoloLens device in `Settings->For developers`
-
-- Navigate to the HoloLens IP using your web browser and set up a user/password.
-![HololensNavigation Device Portal](../img/HololensNavigation_DevicePortal.png) 
-
-## Certificate Installation
-Navigate to the HoloLens IP using your web browser and download the HoloLens certificate. Convert and install it:
-
-```
-$ sudo apt-get install ca-certificates -y
-$ openssl x509 -outform der -in certificate.pem -out certificate.crt
-$ sudo cp certificate.crt /usr/local/share/ca-certificates
-$ sudo update-ca-certificates
-```
-
-## Change or disable HoloLens sleep settings
-Navigate to the HoloLens IP using your web browser and log in with the user/pwd set above. In System->Preferences set sleep settings. To disable, use the browser's inspect feature and add `0` as a list option, then select `0`. Note you will need to do this twice if you want to disable sleep for both `battery` and `plugged-in` settings.
-
 # Pepper Configuration
 
 Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal.
@@ -109,18 +89,18 @@ $ ssh nao@<pepper IP>
   > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
 ```
 
-The `setAngles` call is a non-blocking call. Parameters:
-- `names` – The name or names of joints, chains, “Body”, “JointActuators”, “Joints” or “Actuators”.
-- `angles` – One or more angles in radians
-- `fractionMaxSpeed` – The fraction of maximum speed to use
+**setAngles** is a non-blocking call with the following parameters:
+- **names** – The name or names of joints, chains, “Body”, “JointActuators”, “Joints” or “Actuators”.
+- **angles** – One or more angles in radians
+- **fractionMaxSpeed** – The fraction of maximum speed to use
 
-Valid Pepper joint names can be found [here](http://doc.aldebaran.com/2-5/family/romeo/joints_romeo.html?highlight=joint) and [here](https://developer.softbankrobotics.com/nao6/nao-documentation/nao-developer-guide/kinematics-data/effector-chain-definitions#nao-chains),
-or call `getBodyNames` for a complete list.
+Valid Pepper joint names can be found [**here**](http://doc.aldebaran.com/2-5/family/romeo/joints_romeo.html?highlight=joint) and [**here**](https://developer.softbankrobotics.com/nao6/nao-documentation/nao-developer-guide/kinematics-data/effector-chain-definitions#nao-chains),
+or call **getBodyNames** for a complete list.
 
-## Pepper RViz configuration file
+## Pepper RVIZ Configuration File
+The configuration file for the Pepper robot will set up ROS nodes for convenient operations as well as present a simulated model of the robot on the navigation map.
 
-location: `/opt/ros/melodic/share/naoqi_driver/share/pepper.rviz`
-
+Location: ***/opt/ros/melodic/share/naoqi_driver/share/pepper.rviz***
 
 # Miscellaneous
 The folowing instructions are optional and provide alternative methods to perfom setup and configuration actions. They are intended to be helpful in system modification and/or troubleshooting.
@@ -219,3 +199,57 @@ The following terminal commands will launch the ROS software modules individuall
   - Map
 
   - RobotModel 
+
+## Security Certificate Installation
+
+### Build PC
+The connection that supports compiled software deployments between Microsoft Visual Studio running on the Build PC and the HoloLens device is secured with a PIN exchange during pairing as described above.  However, the "certificate error" seen in the browser when accessing the HoloLens Device Portal can be fixed by creating a trust relationship with the device.
+
+Each HoloLens generates a self-signed certificate for its SSL connection. By default, this certificate is not trusted by your PC's web browser and you may get a "certificate error". You can securely connect to your device by downloading this certificate from your HoloLens over USB or a Wi-Fi network you trust and trusting it on your PC.
+
+1. Make sure you are on a secure network (USB or a Wi-Fi network you trust).
+2. Download this device's certificate from the "Security" page on the Device Portal.
+    - Navigate to: https://<YOUR_HOLOLENS_IP_ADDRESS>/devicepair.htm
+    - Open the node for System > Preferences
+    - Scroll down to Device Security, select the "Download this device's certificate" button.
+3. Install the certificate in the "Trusted Root Certification Authorities" store on your PC.
+    - From the Windows menu, type: Manage Computer Certificates and start the applet.
+    - Expand the Trusted Root Certification Authority folder.
+    - Select the Certificates folder.
+    - From the Action menu, select: All Tasks > Import...
+    - Complete the Certificate Import Wizard, using the certificate file you downloaded from the Device Portal
+4. Restart the browser
+
+***Note:*** This certificate will only be trusted for this device and the user will have to go through the process again if the device is flashed.
+
+### Navigation PC
+On the Navigation PC, certificates are required to enable secure communications when the Navigation PC initiates connections with the Pepper robot and the HoloLens device. Open the Device Portal in the web browser and HoloLens IP into the address bar:
+
+1. Click on the security warning icon in the left end of the address bar: 
+
+    ![HololensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_SecurityError_MoreInfo.png)
+
+2. In the call-out, click **"Connection Not Secure"**, then **"More Information"** to open the **Page Info** menu screen and then click the **"View Certificate"** button:
+
+    ![HololensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_ViewCertificate.png)
+
+3. In the Certificate's page, click the link to download the certificate PEM file:
+
+    ![HololensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_CertificateDownload.png)
+
+4. Convert and intall the certificates:
+    ```
+    $ sudo apt-get install ca-certificates -y
+    $ openssl x509 -outform der -in certificate.pem -out certificate.crt
+    $ sudo cp certificate.crt /usr/local/share/ca-certificates
+    $ sudo update-ca-certificates
+    ```
+
+## Change or Disable HoloLens Sleep Settings (Optional)
+For convenience, it may be desired to change or even turn off the HoloLens device's sleep settings to enable prolonged navigation operations. Navigate to the Device Portal by using your HoloLens IP address in a web browser and log in with the username/password set above. 
+- Navigate to **Sleep Settings** in the  **System->Preferences** 
+- To disable, right-click on the drop-down selector box for the sleep time-out value and select **"Inspect"**.
+  - add **"0"** as a list option, which will translate to **never**
+  - select the new list option **"0"** 
+
+***Note:***  This will need to be performed twice to disable sleep for both **"battery"** and **"plugged-in"** settings.
