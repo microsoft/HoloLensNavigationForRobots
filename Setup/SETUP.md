@@ -186,9 +186,9 @@ The following configuration settings support development on the HoloLens device.
 
 ## HoloLens Device Portal
 - On the Build PC running Windows, use a browser to navigate to the HoloLens Device Portal by using the IP address of the HoloLens device. Browser security errors will appear. Later, you can install certificates from the device as instructed below, but for this first session click the **Advanced** button to proceed:
-![HololensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_SecurityError.png) 
+![HoloLensNavigation Device Portal Security Error](../img/HololensNavigation_DevicePortal_SecurityError.png) 
 - Click the **"Continue to [IP address] (unsafe)"** link:
-![HololensNavigation Device Portal Security Error Advanced](../img/HololensNavigation_DevicePortal_SecurityError_Advanced.png)
+![HoloLensNavigation Device Portal Security Error Advanced](../img/HololensNavigation_DevicePortal_SecurityError_Advanced.png)
 
 -   The first time the portal is accessed, you will be required to set up a username and password as instructed.  The **Views/Apps** page should will look something like this:
 ![HololensNavigation Device Portal](../img/HololensNavigation_DevicePortal.png) 
