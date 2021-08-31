@@ -35,7 +35,7 @@ Assembly Steps:
 
 # Pepper Configuration
 
-Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal. The Pepper robot's IP address can be obtained by tapping the button on the front of the robot's torso and underneath the bottom edge of the tablet mounted on its chest. The address will be spoken by the robot. If a new wireless network needs to be configured, in some cases a wired ethernet connection must be made to the back of the robot's head and used to access the its management web page.
+Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal. The Pepper robot's IP address can be obtained by tapping the button on the front of the robot's torso and underneath the bottom edge of the tablet mounted on its chest. The address will be spoken by the robot. If a new wireless network needs to be configured, in some cases a wired ethernet connection must be made to the back of the robot's head. An embedded web server in the robot provides a management website at the robot's IP address.
 
 Detailed documentation and further resources for the Pepper robot are on this website:
 
@@ -103,7 +103,7 @@ $ ssh nao@<pepper IP>
 To change Pepper's head pitch:
 ```
 $ ssh nao@<pepper IP>
-  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
 ```
 
 **setAngles** is a non-blocking call with the following parameters:
@@ -135,37 +135,37 @@ As an alternative to the Dashboard UI, the console UI in the calibration window 
 - move Pepper's head into inital/default pose: 
   ```
   $ ssh nao@<pepper IP>  
-  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
   ```
   ```
-  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.1
   ```
   - press ***space bar*** to record the initial position
   - move Pepper's head upward:
   ```
-  > qicli call ALMotion.setAngles "HeadPitch" -0.35 0.3
+  > qicli call ALMotion.setAngles "HeadPitch" -0.35 0.1
   ```
   - press ***space bar*** again to record the new position
   - reset Pepper's head pitch and then rotate to left:
   ```
-  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
   ```
   ```
-  > qicli call ALMotion.setAngles "HeadYaw" 0.7 0.3
+  > qicli call ALMotion.setAngles "HeadYaw" 0.7 0.1
   ```
   - press ***space bar*** again to record the new position
   - rotate Pepper's head to the right:
   ```
-  > qicli call ALMotion.setAngles "HeadYaw" -0.7 0.3
+  > qicli call ALMotion.setAngles "HeadYaw" -0.7 0.1
   ```
   - press ***space bar*** again to record the new position
   - press ***"c" key*** to calibrate
   - reset Pepper's head pitch and rotation:
   ```
-  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
   ```
   ```
-  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
+  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.1
   ```
 
 ## Running Individual Processes
