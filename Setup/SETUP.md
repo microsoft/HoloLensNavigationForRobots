@@ -149,7 +149,7 @@ $ cp -r ~/repos/HoloLensNavigationForRobots/linux/navigation_launcher/ ~/catkin_
 
 Update ownership and executable-file permissions to allow the Python scripts to run:
 ```
-$ cd ~/catkin_ws/src/HoloLens_Localization/scripts
+$ cd ~/catkin_ws/src/holoLens_localization/scripts
 $ chown $USER:$USER dynamic_adjuster.py
 $ chmod +x dynamic_adjuster.py
 $ chown $USER:$USER localizer.py
@@ -175,7 +175,7 @@ $ source ~/.bashrc
 This section is a guide for configuring the HoloLens device to run the project sample software. It assumes that the user is already trained and familiar with basic HoloLens UI operations. If the HoloLens device has been set up to require a user-account to log in, this must be done each time before using the project sample software and prior to mounting the Hololens device on the Pepper robot.  If the configured user session logs out (ie. for a power-saving time-out), it is required to log back in before continuing to use this software.
 
 ## HoloLens Development Configuration
-The following configuration changes support development on the HoloLens device.  
+The following configuration settings support development on the HoloLens device.  
  - **Settings/Update/For developers/Developer Mode**, enabling this setting allows the HoloLens device to run non-store and non-signed applications.
  - **Settings/Update/For developers/Pair**, this control sets up a secure pairing with the Build PC to support Microsoft Visual Studio deployments of the compiled sample software on the HoloLens device.
  - **Settings/Update/For developers/Device Portal**, enabling this setting launches a web-server on the HoloLens device providing remote browser-based access to platform tools and application-management controls.

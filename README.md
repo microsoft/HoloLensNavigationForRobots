@@ -20,7 +20,7 @@ The system operates in one of three modes:
 In the map capture mode, the system takes the 3D environment captured by the HoloLens device and converts it into a 2D map image compatible with the built-in ROS navigation solution. In the calibration mode, the system animates the robot and calculates the position of the HoloLens device mounted on the Pepper robot's head relative to the position of the robot's base, which contains the motorized wheels. In the navigation mode, the system uses the dynamic position of the HoloLens device in the navigation space to indicate the position of the robot's mobile base, which is driven by the ROS navigation solution based on plans computed in response to goal points indicated by the user on a 2D map.
 
 ## Hardware Devices:
-- **HoloLens** - battery-powered mobile computer hosting camera and depth sensors used for map capture and localization
+- **HoloLens (ver. 1 or 2)** - battery-powered mobile computer hosting camera and depth sensors used for map capture and localization
 
 - **Navigation PC (Ubuntu 18.04)** - x64 PC hosting ROS (Melodic) navigation solution, calibration, and operational scripts
 
