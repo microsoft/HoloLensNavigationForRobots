@@ -3,13 +3,21 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 # HoloLens Navigation for Robots
-The example system in this repository shows how a [HoloLens](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [Pepper robot](https://us.softbankrobotics.com/pepper) and provide it with a self-calibrating indoor navigation solution. The calibration process is described in detail in the paper: [Dynamic Calibration between a Mobile Robot and SLAM Device for Navigation](https://www.cvl.iis.u-tokyo.ac.jp/data/uploads/papers/Ishikawa_SLAMDevice_ROMAN2019.pdf)
+Welcome! The example system in this repository shows how a [**HoloLens**](https://www.microsoft.com/en-us/hololens) device can be placed on the head of [**Pepper robot**](https://us.softbankrobotics.com/pepper) and provide it with a self-calibrating indoor navigation solution. The calibration process is described in detail in the paper: [**Dynamic Calibration between a Mobile Robot and SLAM Device for Navigation**](https://www.cvl.iis.u-tokyo.ac.jp/data/uploads/papers/Ishikawa_SLAMDevice_ROMAN2019.pdf) and is demonstrated in the video below ***(click image to download video)*** **:**
 
+[![Project Video](img/HoloLensNavigation_ICRA18_1498_VI_i.png)](https://github.com/microsoft/HoloLensNavigationForRobots/raw/main/img/ICRA18_1498_VI_i.mp4 "Project Video")
 
-# System Overview
-The system is comprised of four major hardware components that run the software code modules and operates in one of three operational modes.
+# How It Works
+The system is comprised of three primary hardware components that run the software code modules and navigate operations: a Pepper robot, a HoloLens device, networked together with and bridged to the ROS navigation solution running on a Navigation PC. Additionally, a Build PC running  Windows 10 is required to compile and deploy this project's sample application onto the HoloLens device. 
 
 ![HoloLensNavigation System Hardware](img/HoloLensNavigation_HardwarePhoto.png)
+
+The system operates in one of three modes: 
+- Map Capture
+- Calibration
+- Navigation  
+
+In the map capture mode, the system takes the 3D environment captured by the HoloLens device and converts it into a 2D map image compatible with the built-in ROS navigation solution. In the calibration mode, the system animates the robot and calculates the position of the HoloLens device mounted on the Pepper robot's head relative to the position of the robot's base, which contains the motorized wheels. In the navigation mode, the system uses the dynamic position of the HoloLens device in the navigation space to indicate the position of the robot's mobile base, which is driven by the ROS navigation solution based on plans computed in response to goal points indicated by the user on a 2D map.
 
 ## Hardware Devices:
 - **HoloLens** - battery-powered mobile computer hosting camera and depth sensors used for map capture and localization

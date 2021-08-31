@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 # HoloLens Mounting and Pepper Configuration Instructions
-After installation, the following steps are required to configure the system components in order to connect and function with each other.
+After software installation, the following steps are required to configure the system components in order to connect and function with each other.
 
 ## Mount HoloLens on Pepper
 The HoloLens device can be conveniently secured to the Pepper robot's head using adhesive velcro strips.
@@ -35,7 +35,24 @@ Assembly Steps:
 
 # Pepper Configuration
 
-Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal.
+Pepper [qicli](http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html) commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal. The Pepper robot's IP address can be obtained by tapping the button on the front of the robot's torso and underneath the bottom edge of the tablet mounted on its chest. The address will be spoken by the robot. If a new wireless network needs to be configured, in some cases a wired ethernet connection must be made to the back of the robot's head and used to access the its management web page.
+
+Detailed documentation and further resources for the Pepper robot are on this website:
+
+**https://developer.softbankrobotics.com/pepper-naoqi-25/pepper-documentation**
+
+## Install Choregraph (Optional):
+
+If desired, the Pepper robot's native programming and configuration application **Choregraphe** can be installed on either the Navigation or Build PC from these webpages:
+
+**https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux**
+
+**https://developer.softbankrobotics.com/pepper-2-5/downloads/pepper-naoqi-25-downloads-windows**
+
+**Tip:**  If Choregraph fails to start on the Navigation PC (linux), try:
+```
+sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
+```
 
 ## Start Pepper with autonomous life disabled
 
@@ -45,7 +62,7 @@ Disable Pepper autonomous life mode using Choregraph:
 - Click on blue heart icon in upper right corner.
 - Wake Pepper up by clicking on sunshine icon in upper right corner
  
-Disable Pepper autonomous life mode using `ssh`:
+Disable Pepper autonomous life mode using **ssh**:
 
 ```
 $ ssh nao@<pepper IP>
@@ -116,39 +133,40 @@ $ ip a show eno1
 As an alternative to the Dashboard UI, the console UI in the calibration window can be accessed via an SSH terminal to set the head angles directly. In these examples the first value indicates the joint motor, the second value indicates the angle to move to in radians and last value indicates the speed of movement in seconds.
 
 - move Pepper's head into inital/default pose: 
-```
-$ qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
-```
-```
-$ qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
-```
-- press ***space bar*** to record the initial position
-- move Pepper's head upward:
-```
-$ qicli call ALMotion.setAngles "HeadPitch" -0.35 0.3
-```
-- press ***space bar*** again to record the new position
-- reset Pepper's head pitch and then rotate to left:
-```
-$ qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
-```
-```
-$ qicli call ALMotion.setAngles "HeadYaw" 0.7 0.3
-```
-- press ***space bar*** again to record the new position
-- rotate Pepper's head to the right:
-```
-$ qicli call ALMotion.setAngles "HeadYaw" -0.7 0.3
-```
-- press ***space bar*** again to record the new position
-- press ***"c" key*** to calibrate
-- reset Pepper's head pitch and rotation:
-```
-$ qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
-```
-```
-$ qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
-```
+  ```
+  $ ssh nao@<pepper IP>  
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  ```
+  ```
+  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
+  ```
+  - press ***space bar*** to record the initial position
+  - move Pepper's head upward:
+  ```
+  > qicli call ALMotion.setAngles "HeadPitch" -0.35 0.3
+  ```
+  - press ***space bar*** again to record the new position
+  - reset Pepper's head pitch and then rotate to left:
+  ```
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  ```
+  ```
+  > qicli call ALMotion.setAngles "HeadYaw" 0.7 0.3
+  ```
+  - press ***space bar*** again to record the new position
+  - rotate Pepper's head to the right:
+  ```
+  > qicli call ALMotion.setAngles "HeadYaw" -0.7 0.3
+  ```
+  - press ***space bar*** again to record the new position
+  - press ***"c" key*** to calibrate
+  - reset Pepper's head pitch and rotation:
+  ```
+  > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.3
+  ```
+  ```
+  > qicli call ALMotion.setAngles "HeadYaw" 0.0 0.3
+  ```
 
 ## Running Individual Processes
 The following terminal commands will launch the ROS software modules individually.

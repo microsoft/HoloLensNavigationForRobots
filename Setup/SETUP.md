@@ -126,26 +126,7 @@ Disable audio in boot configuration file (set flag in line 85 from true to false
 $ sudo gedit /opt/ros/melodic/share/naoqi_driver/share/boot_config.json
 ```
 
-Disable Autonomous Life (when idle, this service provides dynamic lifelike movements driven by sensor input, which interferes with the process of mounting the HoloLens device on the robot):
-
-```
-ToDo: "naoqi cmd to disable autonomous life"
-```
-
-## Choregraph (Optional):
-
-If desired, the Pepper robot's native programming and configuration application **Choregraphe** can be installed on either the Navigation or Build PC from these webpages:
-
-**https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux**
-
-**https://developer.softbankrobotics.com/pepper-2-5/downloads/pepper-naoqi-25-downloads-windows**
-
-**Tip:**  If Choregraph fails to start on the Navigation PC (linux), try:
-```
-sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
-```
-
-## Hololens Navigation Project Sample Software
+## Install Hololens Navigation Project Sample Software
 
 Using the desktop GUI File Manager (or your favorite Linux tool), download and copy the project sample software for Linux (/linux folder in the repository tree) into the ROS catkin build system:
 
