@@ -114,7 +114,7 @@ The following step-by-step procedure provides a guide for performing the calibra
     - The **pepper ip** address for the robot will be verbally reported when the button on the front of the torso and behind the bottom edge of the tablet is tapped. 
 
       ```
-      $  roslaunch pepper_bringup pepper_full.launch nao_ip:=<pepper ip> network_interface:=<network interface>
+      $ roslaunch pepper_bringup pepper_full.launch nao_ip:=<pepper ip> network_interface:=<network interface>
       ```
 
 - (Navigation PC) Launch HoloLens Stack
@@ -152,23 +152,21 @@ On the Navigation PC, open your favorite web browser and follow these steps to p
 Once the system is running and configured, it is ready to perform navigation operations within the physical space represented by the installed map. The following steps start and control navigation:
 - (Navigation PC) Launch ROS RVIZ
   ```
-  $  rosrun rviz rviz`
+  $  rosrun rviz rviz
   ```
 - RVIZ will launch showing the 2D map file with a simulated model of the Pepper robot.
 
-  ![HololensNavigation RVIZ Launch](/img/HololensNavigation_RVIZ_Launch.png) 
+  ![HololensNavigation RVIZ Launch](/img/HoloLensNavigation_RVIZ_NavSpace.png) 
 
 - Use the application GUI to load the [pepper.rviz](rviz/pepper.rviz) rviz configuration file.
 
-  ![HololensNavigation RVIZ Config File](/img/HololensNavigation_RVIZ_ConfigFile.png) 
-
 - In the RVIZ GUI, click the **2D Pose Estimate** button and set Pepper's inital position and direction on the map by right-clicking and dragging across the map. The initial position is indicated by the mouse-down click and the direction is calculated from the relative positions of the mouse-down and then mouse-up points on the map.  The position must be precise enough to ensure the map data is in harmony with live data coming from the robot's spatial sensors. If the position is within the precision threshold, the script will calculate a pose estimate and localize the Pepper model on the map.
 
-  ![HololensNavigation RVIZ 2D Pose Estimate](/img/HololensNavigation_RVIZ_2DPoseEstimate.png) 
+  ![HololensNavigation RVIZ 2D Pose Estimate](/img/HoloLensNavigation_RVIZ_2DPoseEst.png) 
 
 - In the RVIZ GUI,  click the **2D Nav Goal** button and select a destination goal and direction for the robot on the map in the same manner used to set the initial 2D Pose Estimate.
 
-  ![HololensNavigation RVIZ 2D Nav Goal](/img/HololensNavigation_RVIZ_2DNavGoal.png) 
+  ![HololensNavigation RVIZ 2D Nav Goal](/img/HoloLensNavigation_RVIZ_2DNavGoal.png) 
 
 - If a valid path can be calculated by the ROS Navigation Stack, the  robot will be begin navigation and movement to the goal position.
 - Once arrived or before arriving at the destination, a new **2D Nav Goal** can be specified with the RVIZ GUI and the robot will stop moving to the previous goal position and proceed to the new destination.
