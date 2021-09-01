@@ -88,7 +88,7 @@ $ sudo make install
 ```
 
 ## Pepper Naoqi SDK
-General ROS support for the Pepper robot and the Naoqi driver is documented here:
+For reference, general ROS support for the Pepper robot and the Naoqi driver is documented here:
 
 **http://wiki.ros.org/pepper**
 
@@ -120,7 +120,7 @@ $ cd ~/catkin_ws/
 $ catkin_make
 ```
 
-Disable audio in boot configuration file (set flag in line 85 from true to false):
+Disable audio in boot configuration file (set flag in line 85 from true to false) using the **gedit** text-editor application:
 
 ```
 $ sudo gedit /opt/ros/melodic/share/naoqi_driver/share/boot_config.json

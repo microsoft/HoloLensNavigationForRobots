@@ -56,57 +56,60 @@ sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregra
 
 ## Start Pepper with autonomous life disabled
 
-Disable Pepper autonomous life mode using Choregraph:
+If Choregraphe is available, disable the Pepper robot's autonomous life behavior:
 
 - Connect to Pepper using Choregraph.
 - Click on blue heart icon in upper right corner.
 - Wake Pepper up by clicking on sunshine icon in upper right corner
  
-Disable Pepper autonomous life mode using **ssh**:
+img\HololensNavigation_Choregraphe_AutonLifeOff.png
+
+Otherwise, disable Pepper autonomous life mode using the secure shell **ssh**:
 
 ```
 $ ssh nao@<pepper IP>
   > nao stop
   > naoqi-bin --disable-life
 ```
+## Pepper Naoqi Shell Commands
+For reference, following are some example commands that can be ran on the Pepper robot over a secure shell session. 
 
-Connect to Pepper again and:
+A complete listing of the NAOqi API is in the Pepper documentation here:
+  
+- **https://developer.softbankrobotics.com/pepper-naoqi-25/naoqi-developer-guide/naoqi-apis**
+
+Wake Pepper up:
 ```
 $ ssh nao@<pepper IP>
   > qicli call ALMotion.wakeUp
 ```
 
-To make Pepper go to sleep:
+Make Pepper go to sleep:
 ```
-$ ssh nao@<pepper IP>
   > qicli call ALMotion.rest
 ```
 
-To shut down Pepper:
+Shut down Pepper (*The connection will close and further control will be lost until the robot is powered back up*):
 ```
-$ ssh nao@<pepper IP>
   > sudo shutdown -h now
 ```
 
-To get the joint names for the body or a chain:
+Get the joint names for the body or a chain:
 ```
-$ ssh nao@<pepper IP>
   > qicli call ALMotion.getBodyNames "Body"
 ```
 
-To view Pepper's current joint state:
+View Pepper's current joint state:
 ```
-$ ssh nao@<pepper IP>
   > qicli call ALMotion.getSummary
 ```
 
-To change Pepper's head pitch:
+Change Pepper's head pitch:
 ```
-$ ssh nao@<pepper IP>
   > qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
 ```
 
-**setAngles** is a non-blocking call with the following parameters:
+***Note:*** **setAngles** is a non-blocking call with the following parameters:
 - **names** – The name or names of joints, chains, “Body”, “JointActuators”, “Joints” or “Actuators”.
 - **angles** – One or more angles in radians
 - **fractionMaxSpeed** – The fraction of maximum speed to use
@@ -129,7 +132,7 @@ $ ip l show
 $ ip a show eno1
 ```
 
-## Naoqi Commands for Calibration Positions
+## Naoqi Command Sequence for Calibration Positions
 As an alternative to the Dashboard UI, the console UI in the calibration window can be accessed via an SSH terminal to set the head angles directly. In these examples the first value indicates the joint motor, the second value indicates the angle to move to in radians and last value indicates the speed of movement in seconds.
 
 - move Pepper's head into inital/default pose: 
@@ -212,13 +215,7 @@ The following terminal commands will launch the ROS software modules individuall
   $ rosrun hololens_localizer dynamic_adjuster.py
   ```
 
-## RVIZ Configuration
-- Map and Pepper RobotModel topics can be added manually:
-  - Map
-
-  - RobotModel 
-
-## Security Certificate Installation
+## HoloLens Security Certificate Installation
 
 ### Build PC
 The connection that supports compiled software deployments between Microsoft Visual Studio running on the Build PC and the HoloLens device is secured with a PIN exchange during pairing as described above.  However, the "certificate error" seen in the browser when accessing the HoloLens Device Portal can be fixed by creating a trust relationship with the device.
