@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>CONFIGURATION - HoloLens Navigation for Robots</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="../..">HoloLens Navigation for Robots</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#microsoft-applied-robotics-research-library">Microsoft Applied Robotics Research Library</a></li>
+            <li><a href="#open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</a></li>
+        <li class="main "><a href="#hololens-mounting-and-pepper-configuration-instructions">HoloLens Mounting and Pepper Configuration Instructions</a></li>
+            <li><a href="#mount-hololens-on-pepper">Mount HoloLens on Pepper</a></li>
+        <li class="main "><a href="#pepper-configuration">Pepper Configuration</a></li>
+            <li><a href="#install-choregraph-optional">Install Choregraph (Optional):</a></li>
+            <li><a href="#start-pepper-with-autonomous-life-disabled">Start Pepper with autonomous life disabled</a></li>
+            <li><a href="#pepper-naoqi-shell-commands">Pepper Naoqi Shell Commands</a></li>
+            <li><a href="#pepper-rviz-configuration-file">Pepper RVIZ Configuration File</a></li>
+        <li class="main "><a href="#miscellaneous">Miscellaneous</a></li>
+            <li><a href="#enumerate-network-interfaces-on-ubuntu">Enumerate network interfaces on Ubuntu:</a></li>
+            <li><a href="#naoqi-command-sequence-for-calibration-positions">Naoqi Command Sequence for Calibration Positions</a></li>
+            <li><a href="#running-individual-processes">Running Individual Processes</a></li>
+            <li><a href="#hololens-security-certificate-installation">HoloLens Security Certificate Installation</a></li>
+            <li><a href="#change-or-disable-hololens-sleep-settings-optional">Change or Disable HoloLens Sleep Settings (Optional)</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="microsoft-applied-robotics-research-library"><img alt="logo" src="../../img/MARR_logo.png" /> <a href="https://special-giggle-b26bab5f.pages.github.io/">Microsoft Applied Robotics Research Library</a></h2>
+<h3 id="open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> </p>
+<h1 id="hololens-mounting-and-pepper-configuration-instructions">HoloLens Mounting and Pepper Configuration Instructions</h1>
+<p>After software installation, the following steps are required to configure the system components in order to connect and function with each other.</p>
+<h2 id="mount-hololens-on-pepper">Mount HoloLens on Pepper</h2>
+<p>The HoloLens device can be conveniently secured to the Pepper robot's head using adhesive velcro strips.</p>
+<p>Assembly Steps:
+ - First, access the Pepper's joint-release key which is stored under the rubber covering near the Emergency Power Off button behind the robot's neck:
+<img alt="HololensNavigation Joint Key Storage" src="../../img/HoloLensNavigation_JointKeyStorage.jpg" /> </p>
+<ul>
+<li>
+<p>Use the joint-release key to remove the access-cover on the back of the robot's head by inserting it into the two holes below the cover:
+<img alt="HololensNavigation Remove Head Plate" src="../../img/HoloLensNavigation_RemoveHeadPlate.jpg" /> </p>
+</li>
+<li>
+<p>Make a head back strap with adhesive velcro by cutting 10-inch strips of both the hook and loop sides and sticking their adhesive sides together.  Attach the strap by slipping it between the flexible fan housing and the head-cover support beam:
+<img alt="HololensNavigation Mount Head Back Strap" src="../../img/HoloLensNavigation_MountHeadBackStrap.jpg" /> </p>
+</li>
+<li>
+<p>Affix a 2.5 inch and a 3.5 inch adhesive velcro loop pad to the top of the robot's head in the positions shown:
+<img alt="HololensNavigation Mount Head Pads" src="../../img/HoloLensNavigation_MountHeadPads.jpg" /> </p>
+</li>
+<li>
+<p>Set the HoloLens device over the robot's head and open the head-band adjust band all the way by rotating the knob all the way to the left:
+<img alt="HololensNavigation Head Band Adjust" src="../../img/HoloLensNavigation_BandAdjust.jpg" /> </p>
+</li>
+<li>
+<p>Secure the back of the HoloLens device to the back of the robot's head by tightly creating a closed loop with the two-sided Velcro head strap.
+<img alt="HololensNavigation RVIZ Config File" src="../../img/HoloLensNavigation_HeadStrap.jpg" /> </p>
+</li>
+<li>
+<p>Make a second mount strap by creating a 2.5 inch two-sided Velcro strip and securing it over the loop surface of both the HoloLens headstrap and rear mounting pad.
+<img alt="HololensNavigation Rear Head Pad" src="../../img/HoloLensNavigation_HeadPadRear.jpg" /> </p>
+</li>
+<li>
+<p>Make a third mount strap by creating a 3.5 inch two-sided Velcro strip and securing it over the loop surface of both the HoloLens headstrap and front mounting pad and bringing over the hook side of the HoloLens headstrap to the loop side of the same strap:
+<img alt="HololensNavigation Front Head Pad" src="../../img/HoloLensNavigation_HeadPadFront.jpg" /> </p>
+</li>
+</ul>
+<h1 id="pepper-configuration">Pepper Configuration</h1>
+<p>Pepper <a href="http://doc.aldebaran.com/2-5/dev/libqi/guide/qicli.html">qicli</a> commands can be issued via the Choregraphe application or directly using a secure shell (SSH) terminal. The Pepper robot's IP address can be obtained by tapping the button on the front of the robot's torso and underneath the bottom edge of the tablet mounted on its chest. The address will be spoken by the robot. If a new wireless network needs to be configured, in some cases a wired ethernet connection must be made to the back of the robot's head. An embedded web server in the robot provides a management website at the robot's IP address.</p>
+<p>Detailed documentation and further resources for the Pepper robot are on this website:</p>
+<p><strong>https://developer.softbankrobotics.com/pepper-naoqi-25/pepper-documentation</strong></p>
+<h2 id="install-choregraph-optional">Install Choregraph (Optional):</h2>
+<p>If desired, the Pepper robot's native programming and configuration application <strong>Choregraphe</strong> can be installed on either the Navigation or Build PC from these webpages:</p>
+<p><strong>https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux</strong></p>
+<p><strong>https://developer.softbankrobotics.com/pepper-2-5/downloads/pepper-naoqi-25-downloads-windows</strong></p>
+<p><strong>Tip:</strong>  If Choregraph fails to start on the Navigation PC (linux), try:</p>
+<pre><code>sudo ln -sf /usr/lib/x86_64-linux-gnu/libz.so /opt/'Softbank Robotics'/'Choregraphe Suite 2.5'/lib/libz.so.1
+</code></pre>
+
+<h2 id="start-pepper-with-autonomous-life-disabled">Start Pepper with autonomous life disabled</h2>
+<p>If Choregraphe is available, disable the Pepper robot's autonomous life behavior:</p>
+<ul>
+<li>Connect to Pepper using Choregraph.</li>
+<li>Click on blue heart icon in upper right corner.</li>
+<li>Wake Pepper up by clicking on sunshine icon in upper right corner</li>
+</ul>
+<p>img\HololensNavigation_Choregraphe_AutonLifeOff.png</p>
+<p>Otherwise, disable Pepper autonomous life mode using the secure shell <strong>ssh</strong>:</p>
+<pre><code>$ ssh nao@&lt;pepper IP&gt;
+  &gt; nao stop
+  &gt; naoqi-bin --disable-life
+</code></pre>
+
+<h2 id="pepper-naoqi-shell-commands">Pepper Naoqi Shell Commands</h2>
+<p>For reference, following are some example commands that can be ran on the Pepper robot over a secure shell session. </p>
+<p>A complete listing of the NAOqi API is in the Pepper documentation here:</p>
+<ul>
+<li><strong>https://developer.softbankrobotics.com/pepper-naoqi-25/naoqi-developer-guide/naoqi-apis</strong></li>
+</ul>
+<p>Wake Pepper up:</p>
+<pre><code>$ ssh nao@&lt;pepper IP&gt;
+  &gt; qicli call ALMotion.wakeUp
+</code></pre>
+
+<p>Make Pepper go to sleep:</p>
+<pre><code>  &gt; qicli call ALMotion.rest
+</code></pre>
+
+<p>Shut down Pepper (<em>The connection will close and further control will be lost until the robot is powered back up</em>):</p>
+<pre><code>  &gt; sudo shutdown -h now
+</code></pre>
+
+<p>Get the joint names for the body or a chain:</p>
+<pre><code>  &gt; qicli call ALMotion.getBodyNames &quot;Body&quot;
+</code></pre>
+
+<p>View Pepper's current joint state:</p>
+<pre><code>  &gt; qicli call ALMotion.getSummary
+</code></pre>
+
+<p>Change Pepper's head pitch:</p>
+<pre><code>  &gt; qicli call ALMotion.setAngles &quot;HeadPitch&quot; 0.0 0.1
+</code></pre>
+
+<p><strong><em>Note:</em></strong> <strong>setAngles</strong> is a non-blocking call with the following parameters:
+- <strong>names</strong> – The name or names of joints, chains, “Body”, “JointActuators”, “Joints” or “Actuators”.
+- <strong>angles</strong> – One or more angles in radians
+- <strong>fractionMaxSpeed</strong> – The fraction of maximum speed to use</p>
+<p>Valid Pepper joint names can be found <a href="http://doc.aldebaran.com/2-5/family/romeo/joints_romeo.html?highlight=joint"><strong>here</strong></a> and <a href="https://developer.softbankrobotics.com/nao6/nao-documentation/nao-developer-guide/kinematics-data/effector-chain-definitions#nao-chains"><strong>here</strong></a>,
+or call <strong>getBodyNames</strong> for a complete list.</p>
+<h2 id="pepper-rviz-configuration-file">Pepper RVIZ Configuration File</h2>
+<p>The configuration file for the Pepper robot will set up ROS nodes for convenient operations as well as present a simulated model of the robot on the navigation map.</p>
+<p>Location: <strong><em>/opt/ros/melodic/share/naoqi_driver/share/pepper.rviz</em></strong></p>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<p>The folowing instructions are optional and provide alternative methods to perfom setup and configuration actions. They are intended to be helpful in system modification and/or troubleshooting.</p>
+<h2 id="enumerate-network-interfaces-on-ubuntu">Enumerate network interfaces on Ubuntu:</h2>
+<p>The following IP commands can be used on the Navigation PC's console UI to expose values needed for configuration:</p>
+<pre><code>$ ip l show
+$ ip a show eno1
+</code></pre>
+
+<h2 id="naoqi-command-sequence-for-calibration-positions">Naoqi Command Sequence for Calibration Positions</h2>
+<p>As an alternative to the Dashboard UI, the console UI in the calibration window can be accessed via an SSH terminal to set the head angles directly. In these examples the first value indicates the joint motor, the second value indicates the angle to move to in radians and last value indicates the speed of movement in seconds.</p>
+<ul>
+<li>move Pepper's head into inital/default pose: 
+  ```
+  $ ssh nao@<pepper IP>  <blockquote>
+<p>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
+  <code></code>
+qicli call ALMotion.setAngles "HeadYaw" 0.0 0.1
+  ```</p>
+</blockquote>
+</li>
+<li>press <strong><em>space bar</em></strong> to record the initial position</li>
+<li>move Pepper's head upward:
+  ```<blockquote>
+<p>qicli call ALMotion.setAngles "HeadPitch" -0.35 0.1
+  ```</p>
+</blockquote>
+</li>
+<li>press <strong><em>space bar</em></strong> again to record the new position</li>
+<li>reset Pepper's head pitch and then rotate to left:
+  ```<blockquote>
+<p>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
+  <code></code>
+qicli call ALMotion.setAngles "HeadYaw" 0.7 0.1
+  ```</p>
+</blockquote>
+</li>
+<li>press <strong><em>space bar</em></strong> again to record the new position</li>
+<li>rotate Pepper's head to the right:
+  ```<blockquote>
+<p>qicli call ALMotion.setAngles "HeadYaw" -0.7 0.1
+  ```</p>
+</blockquote>
+</li>
+<li>press <strong><em>space bar</em></strong> again to record the new position</li>
+<li>press <strong><em>"c" key</em></strong> to calibrate</li>
+<li>reset Pepper's head pitch and rotation:
+  ```<blockquote>
+<p>qicli call ALMotion.setAngles "HeadPitch" 0.0 0.1
+  <code></code>
+qicli call ALMotion.setAngles "HeadYaw" 0.0 0.1
+  ```</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="running-individual-processes">Running Individual Processes</h2>
+<p>The following terminal commands will launch the ROS software modules individually.
+- Pepper ROS full stack
+  <code>$ roslaunch pepper_bringup pepper_full.launch nao_ip:=&lt;pepper ip&gt; network_interface:=&lt;network interface&gt;</code>
+  - example: 
+  <code>$ roslaunch pepper_bringup pepper_full.launch nao_ip:=10.1.1.202 network_interface:=enp3s0</code></p>
+<ul>
+<li>HoloLens ROS Bridge
+  <code>$ rosrun hololens_ros_bridge hololens_ros_bridge_node &lt;hololens_ip&gt; 1234</code><ul>
+<li>example: 
+  <code>$ rosrun hololens_ros_bridge hololens_ros_bridge_node 10.1.1.206 1234</code></li>
+</ul>
+</li>
+<li>ROS map_server
+  <code>$ rosrun map_server map_server src/navigation_launcher/params/map.yaml</code></li>
+<li>HoloLens Anchor Localizer
+  <code>$ rosrun hololens_localizer anchor_localizer</code></li>
+<li>Localizer Calibration
+  <code>$ rosrun hololens_localizer static_calibration &lt;robot odom frame&gt; &lt;robot head frame&gt; &lt;robot base link&gt; [calibrationFileName]</code><ul>
+<li>example: 
+  <code>$ rosrun hololens_localizer static_calibration odom Head base_footprint calibrationData.bin</code></li>
+</ul>
+</li>
+<li>Dynamic Adjuster
+  <code>$ rosrun hololens_localizer dynamic_adjuster.py &lt;robot foot frame&gt;</code><ul>
+<li>example: 
+  <code>$ rosrun hololens_localizer dynamic_adjuster.py</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="hololens-security-certificate-installation">HoloLens Security Certificate Installation</h2>
+<h3 id="build-pc">Build PC</h3>
+<p>The connection that supports compiled software deployments between Microsoft Visual Studio running on the Build PC and the HoloLens device is secured with a PIN exchange during pairing as described above.  However, the "certificate error" seen in the browser when accessing the HoloLens Device Portal can be fixed by creating a trust relationship with the device.</p>
+<p>Each HoloLens generates a self-signed certificate for its SSL connection. By default, this certificate is not trusted by your PC's web browser and you may get a "certificate error". You can securely connect to your device by downloading this certificate from your HoloLens over USB or a Wi-Fi network you trust and trusting it on your PC.</p>
+<ol>
+<li>Make sure you are on a secure network (USB or a Wi-Fi network you trust).</li>
+<li>Download this device's certificate from the "Security" page on the Device Portal.<ul>
+<li>Navigate to: https://<YOUR_HOLOLENS_IP_ADDRESS>/devicepair.htm</li>
+<li>Open the node for System &gt; Preferences</li>
+<li>Scroll down to Device Security, select the "Download this device's certificate" button.</li>
+</ul>
+</li>
+<li>Install the certificate in the "Trusted Root Certification Authorities" store on your PC.<ul>
+<li>From the Windows menu, type: Manage Computer Certificates and start the applet.</li>
+<li>Expand the Trusted Root Certification Authority folder.</li>
+<li>Select the Certificates folder.</li>
+<li>From the Action menu, select: All Tasks &gt; Import...</li>
+<li>Complete the Certificate Import Wizard, using the certificate file you downloaded from the Device Portal</li>
+</ul>
+</li>
+<li>Restart the browser</li>
+</ol>
+<p><strong><em>Note:</em></strong> This certificate will only be trusted for this device and the user will have to go through the process again if the device is flashed.</p>
+<h3 id="navigation-pc">Navigation PC</h3>
+<p>On the Navigation PC, certificates are required to enable secure communications when the Navigation PC initiates connections with the Pepper robot and the HoloLens device. Open the Device Portal in the web browser and HoloLens IP into the address bar:</p>
+<ol>
+<li>
+<p>Click on the security warning icon in the left end of the address bar: </p>
+<p><img alt="HololensNavigation Device Portal Security Error" src="../../img/HololensNavigation_DevicePortal_SecurityError_MoreInfo.png" /></p>
+</li>
+<li>
+<p>In the call-out, click <strong>"Connection Not Secure"</strong>, then <strong>"More Information"</strong> to open the <strong>Page Info</strong> menu screen and then click the <strong>"View Certificate"</strong> button:</p>
+<p><img alt="HololensNavigation Device Portal Security Error" src="../../img/HololensNavigation_DevicePortal_ViewCertificate.png" /></p>
+</li>
+<li>
+<p>In the Certificate's page, click the link to download the certificate PEM file:</p>
+<p><img alt="HololensNavigation Device Portal Security Error" src="../../img/HololensNavigation_DevicePortal_CertificateDownload.png" /></p>
+</li>
+<li>
+<p>Convert and intall the certificates:
+    <code>$ sudo apt-get install ca-certificates -y
+    $ openssl x509 -outform der -in certificate.pem -out certificate.crt
+    $ sudo cp certificate.crt /usr/local/share/ca-certificates
+    $ sudo update-ca-certificates</code></p>
+</li>
+</ol>
+<h2 id="change-or-disable-hololens-sleep-settings-optional">Change or Disable HoloLens Sleep Settings (Optional)</h2>
+<p>For convenience, it may be desired to change or even turn off the HoloLens device's sleep settings to enable prolonged navigation operations. Navigate to the Device Portal by using your HoloLens IP address in a web browser and log in with the username/password set above. 
+- Navigate to <strong>Sleep Settings</strong> in the  <strong>System-&gt;Preferences</strong> 
+- To disable, right-click on the drop-down selector box for the sleep time-out value and select <strong>"Inspect"</strong>.
+  - add <strong>"0"</strong> as a list option, which will translate to <strong>never</strong>
+  - select the new list option <strong>"0"</strong> </p>
+<p><strong><em>Note:</em></strong>  This will need to be performed twice to disable sleep for both <strong>"battery"</strong> and <strong>"plugged-in"</strong> settings.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

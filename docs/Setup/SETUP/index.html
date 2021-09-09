@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SETUP - HoloLens Navigation for Robots</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="../..">HoloLens Navigation for Robots</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#microsoft-applied-robotics-research-library">Microsoft Applied Robotics Research Library</a></li>
+            <li><a href="#open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</a></li>
+        <li class="main "><a href="#setup-and-build-instructions">Setup and Build Instructions</a></li>
+        <li class="main "><a href="#navigation-pc">Navigation PC</a></li>
+            <li><a href="#os-and-pre-requisites">OS and Pre-requisites</a></li>
+            <li><a href="#ros-melodic">ROS Melodic</a></li>
+            <li><a href="#ceres-solver">Ceres Solver</a></li>
+            <li><a href="#pepper-naoqi-sdk">Pepper Naoqi SDK</a></li>
+            <li><a href="#install-hololens-navigation-project-sample-software">Install Hololens Navigation Project Sample Software</a></li>
+        <li class="main "><a href="#hololens-device">HoloLens Device</a></li>
+            <li><a href="#hololens-development-configuration">HoloLens Development Configuration</a></li>
+            <li><a href="#hololens-device-portal">HoloLens Device Portal</a></li>
+        <li class="main "><a href="#build-pc">Build PC</a></li>
+            <li><a href="#os-and-pre-requisites_1">OS and Pre-requisites</a></li>
+            <li><a href="#visual-studio-2019">Visual Studio 2019</a></li>
+            <li><a href="#hololens-spatial-mapping-application-windows">HoloLens Spatial Mapping application (Windows)</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="microsoft-applied-robotics-research-library"><img alt="logo" src="../../img/MARR_logo.png" /> <a href="https://special-giggle-b26bab5f.pages.github.io/">Microsoft Applied Robotics Research Library</a></h2>
+<h3 id="open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> </p>
+<h1 id="setup-and-build-instructions">Setup and Build Instructions</h1>
+<p>This page provides software installation, build, and configuration instructions for the HoloLensNavigationForRobots hardware components including the Navigation PC, the Build PC, the Pepper Robot, and the HoloLens device.</p>
+<h1 id="navigation-pc">Navigation PC</h1>
+<p>This section is a guide for the software required to be installed, built and configured on the Navigation PC.</p>
+<h2 id="os-and-pre-requisites">OS and Pre-requisites</h2>
+<p>To match the platform we test with, prepare an x64 Navigation PC meeting the minimum hardware requirements of the <strong>Ubuntu 18.04.5 LTS</strong> operating system as instructed at:</p>
+<p><strong>https://releases.ubuntu.com/18.04/</strong></p>
+<p>We recommend using the "standard download" desktop image for 64-bit PC (AMD64) computers (<strong>ubuntu-18.04.5-desktop-amd64.iso</strong>). This distribution includes a working configuration of Python 2.7 for ROS Melodic and a useful selection of network tools and desktop applications.</p>
+<p>Install XTerm to host the terminal console-controlled calibration application:</p>
+<pre><code>$ sudo apt install xterm
+</code></pre>
+
+<p>Install dos2unix. This may be required in some cases to remove DOS carriage return characters from script text files:</p>
+<pre><code>$ sudo apt install dos2unix
+</code></pre>
+
+<p>Install required Python modules:</p>
+<pre><code>$ sudo apt install python-pip
+$ pip install flask
+$ pip install gevent_websocket
+</code></pre>
+
+<h2 id="ros-melodic">ROS Melodic</h2>
+<p>Follow <strong><em>all</em></strong> of the installation instructions on the following web page for ROS Melodic on Ubuntu 18.04:</p>
+<p><strong>http://wiki.ros.org/melodic/Installation/Ubuntu</strong></p>
+<p>After a successful initial installation, these additional ROS packages are required:</p>
+<pre><code>$ sudo apt-get install ros-melodic-driver-base
+$ sudo apt-get install ros-melodic-move-base-msgs ros-melodic-octomap ros-melodic-octomap-msgs
+$ sudo apt-get install ros-melodic-map-server
+$ sudo apt-get install ros-melodic-camera-info-manager ros-melodic-camera-info-manager-py
+$ sudo apt-get install ros-melodic-rgbd-launch
+$ sudo apt-get install ros-melodic-husky-navigation
+$ sudo apt-get install python-catkin-tools
+</code></pre>
+
+<p>Optional tool for manually driving the robot:</p>
+<pre><code>$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ros-teleop/teleop_twist_keyboard
+</code></pre>
+
+<p>Verify the ROS installation builds with no errors:</p>
+<pre><code>$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<h2 id="ceres-solver">Ceres Solver</h2>
+<p>The Ceres Solver provides Python libraries required for computing pathways through the navigation space.</p>
+<p><strong>http://ceres-solver.org</strong></p>
+<p>First, install library dependecies:</p>
+<pre><code>$ sudo apt-get install libgoogle-glog-dev
+$ sudo apt-get install libatlas-base-dev
+$ sudo apt-get install libeigen3-dev
+</code></pre>
+
+<p>Then, get the Ceres Solver source code, build and install it:</p>
+<pre><code>$ mkdir -p ~/ceres
+$ cd ~/ceres/
+$ wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
+$ tar xvf ceres-solver-1.14.0.tar.gz
+$ mkdir ceres-build &amp;&amp; cd ceres-build
+$ cmake ../ceres-solver-1.14.0
+$ make -j3
+$ sudo make install
+</code></pre>
+
+<h2 id="pepper-naoqi-sdk">Pepper Naoqi SDK</h2>
+<p>For reference, general ROS support for the Pepper robot and the Naoqi driver is documented here:</p>
+<p><strong>http://wiki.ros.org/pepper</strong></p>
+<p>First, install the following ROS packages for Naoqi:</p>
+<pre><code>$ sudo apt-get install ros-melodic-pepper-.*
+$ sudo apt install ros-melodic-naoqi-bridge-msgs ros-melodic-naoqi-libqi ros-melodic-naoqi-driver ros-melodic-naoqi-libqicore
+</code></pre>
+
+<p>Then, download and install the Pepper Naoqi Python SDK:</p>
+<p><strong>https://developer.softbankrobotics.com/pepper-naoqi-25-downloads-linux</strong></p>
+<p>Using the desktop GUI File Manager (or your favorite Linux tool), create a new folder <strong>~/nao</strong> as a destination and extract the file <strong>pynaoqi-python2.7-2.5.7.1-linux64.tar.gz</strong></p>
+<p>Add the Naoqi pythonSDK path to the PYTHONPATH in the .bashrc default shell configuration file:</p>
+<pre><code>$ echo &quot;export PYTHONPATH=${PYTHONPATH}:~/nao/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>Clone the source code packages:</p>
+<pre><code>$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ros-naoqi/naoqi_dcm_driver
+$ git clone https://github.com/ros-naoqi/naoqi_bridge
+$ git clone https://github.com/ros-naoqi/pepper_robot
+$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<p>Disable audio in boot configuration file (set flag in line 85 from true to false) using the <strong>gedit</strong> text-editor application:</p>
+<pre><code>$ sudo gedit /opt/ros/melodic/share/naoqi_driver/share/boot_config.json
+</code></pre>
+
+<h2 id="install-hololens-navigation-project-sample-software">Install Hololens Navigation Project Sample Software</h2>
+<p>Using the desktop GUI File Manager (or your favorite Linux tool), download and copy the project sample software for Linux (/linux folder in the repository tree) into the ROS catkin build system:</p>
+<p>Copy <strong>HoloLensNavigationForRobots/linux/hololens_ros_bridge</strong> to <strong>~/catkin_ws/src/hololens_ros_bridge</strong></p>
+<p>Copy <strong>HoloLensNavigationForRobots/linux/hololens_localization</strong> to <strong>~/catkin_ws/src/hololens_localization</strong></p>
+<p>Copy <strong>HoloLensNavigationForRobots/linux/navigation_launcher</strong> to <strong>~/catkin_ws/src/navigation_launcher</strong></p>
+<p>If needed, the following commands can be used as an example:</p>
+<pre><code>$ cd ~
+$ mkdir repos
+$ cd repos
+$ git clone https://github.com/microsoft/HoloLensNavigationForRobots
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/hololens_ros_bridge/ ~/catkin_ws/src/hololens_ros_bridge/
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/hololens_localization/ ~/catkin_ws/src/hololens_localization/
+$ cp -r ~/repos/HoloLensNavigationForRobots/linux/navigation_launcher/ ~/catkin_ws/src/navigation_launcher/
+</code></pre>
+
+<p>Update ownership and executable-file permissions to allow the Python scripts to run:</p>
+<pre><code>$ cd ~/catkin_ws/src/holoLens_localization/scripts
+$ chown $USER:$USER dynamic_adjuster.py
+$ chmod +x dynamic_adjuster.py
+$ chown $USER:$USER localizer.py
+$ chmod +x localizer.py
+</code></pre>
+
+<p>Make with catkin to build the packages:</p>
+<pre><code>$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+
+<p>Source the workspace:</p>
+<pre><code>$ . ~/catkin_ws/devel/setup.bash
+</code></pre>
+
+<p>For convenience, all new bash terminals can be set up with this workspace path sourced by default with the following commands:</p>
+<pre><code>$ echo &quot;source /catkin_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
+$ source ~/.bashrc
+</code></pre>
+
+<h1 id="hololens-device">HoloLens Device</h1>
+<p>This section is a guide for configuring the HoloLens device to run the project sample software. It assumes that the user is already trained and familiar with basic HoloLens UI operations. If the HoloLens device has been set up to require a user-account to log in, this must be done each time before using the project sample software and prior to mounting the Hololens device on the Pepper robot.  If the configured user session logs out (ie. for a power-saving time-out), it is required to log back in before continuing to use this software.</p>
+<h2 id="hololens-development-configuration">HoloLens Development Configuration</h2>
+<p>The following configuration settings support development on the HoloLens device.<br />
+ - <strong>Settings/Update/For developers/Developer Mode</strong>, enabling this setting allows the HoloLens device to run non-store and non-signed applications.
+ - <strong>Settings/Update/For developers/Pair</strong>, this control sets up a secure pairing with the Build PC to support Microsoft Visual Studio deployments of the compiled sample software on the HoloLens device.
+ - <strong>Settings/Update/For developers/Device Portal</strong>, enabling this setting launches a web-server on the HoloLens device providing remote browser-based access to platform tools and application-management controls.</p>
+<p><strong>Full instructions</strong> are detailed on this webpage:</p>
+<p><strong>https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-the-windows-device-portal</strong></p>
+<h2 id="hololens-device-portal">HoloLens Device Portal</h2>
+<ul>
+<li>On the Build PC running Windows, use a browser to navigate to the HoloLens Device Portal by using the IP address of the HoloLens device. Browser security errors will appear. Later, you can install certificates from the device as instructed below, but for this first session click the <strong>Advanced</strong> button to proceed:
+<img alt="HoloLensNavigation Device Portal Security Error" src="../../img/HoloLensNavigation_DevicePortal_SecurityError.png" /> </li>
+<li>
+<p>Click the <strong>"Continue to [IP address] (unsafe)"</strong> link:
+<img alt="HoloLensNavigation Device Portal Security Error Advanced" src="../../img/HoloLensNavigation_DevicePortal_SecurityError_Advanced.png" /></p>
+</li>
+<li>
+<p>The first time the portal is accessed, you will be required to set up a username and password as instructed.  The <strong>Views/Apps</strong> page should will look something like this:
+<img alt="HololensNavigation Device Portal" src="../../img/HololensNavigation_DevicePortal.png" /> </p>
+</li>
+</ul>
+<h1 id="build-pc">Build PC</h1>
+<p>This section is a guide for the software required to be installed, built and configured on the Build PC.</p>
+<h2 id="os-and-pre-requisites_1">OS and Pre-requisites</h2>
+<p>To match the platform we test with, prepare an x64 Build PC meeting the minimum hardware requirements of the <strong>Microsoft Windows 10</strong> operating system.</p>
+<h2 id="visual-studio-2019">Visual Studio 2019</h2>
+<p><strong>Microsoft Visual Studio 2019</strong> is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device. Download and install the free community version (at minimum) following the instructions on the following website and selecting options to support the <strong>Universal Windows Platform build environment</strong>:</p>
+<p><strong>https://visualstudio.microsoft.com/downloads/</strong></p>
+<h2 id="hololens-spatial-mapping-application-windows">HoloLens Spatial Mapping application (Windows)</h2>
+<p>The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application <strong><em>MSRHoloLensSpatialMapping</em></strong> onto the HoloLens device. Clone this repository with your favorite git tools or download and extract the the files into a convenient folder on the Build PC.</p>
+<p><img alt="Open VS Solution" src="../../img/HololensNavigation_VS2019_OpenSolution.png" /></p>
+<p>From the <strong><em>windows</em></strong> subfolder in the repository, open the file: <strong><em>MSRHoloLensSpatialMapping.sln</em></strong></p>
+<p><img alt="Select VS Solution file" src="../../img/HololensNavigation_VS2019_ProjectSolutionFile.png" /></p>
+<p>After the first-time load of the project solution, check that the required linear algebra package Eigen was successfully installed: </p>
+<p>Navigate to <strong><em>Tools -&gt; NuGet Package Manager -&gt; Package Manager Console</em></strong></p>
+<p><img alt="NuGet Package Manager Console" src="../../img/HololensNavigation_VS2019_NuGetPackageManagerConsole.png" /></p>
+<p>It should appear something like the following:</p>
+<p><img alt="Check for Eigen in Package Manager Console" src="../../img/HololensNavigation_VS2019_CheckEigenPackage.png" /></p>
+<p>However, if you see the following message in the console:</p>
+<pre><code>Some NuGet packages are missing from this solution...
+</code></pre>
+
+<p>Fix it by clicking on the <strong>Restore</strong> button that appears in the UI to download and install the missing <strong>Eigen v3.3.3</strong> package.</p>
+<p>Build and deploy the application to the HoloLens device by clicking the green triangle <img alt="green triangle" src="../../img/HololensNavigation_VS2019_BuildButton.png" /> build button or selecting <strong><em>Build -&gt; Build Solution</em></strong> from the menu.</p>
+<p><strong>For HoloLens 1:</strong></p>
+<p>Build a "Release" solution configuration for "x86" platform.<br />
+- If the device is connected via USB, choose "Device"
+- If the HoloLens is connected via Wifi, choose "Remote Machine"
+<img alt="HoloLens1 build configuration" src="../../img/HololensNavigation_VS2019_Build_HoloLens1_x86.png" /></p>
+<p><strong>For HoloLens 2:</strong></p>
+<p>Build a "Release" solution configuration for "ARM64" platform.<br />
+- If the device is connected via USB, choose "Device"
+- If the HoloLens is connected via Wifi, choose "Remote Machine"
+<img alt="HoloLens2 build configuration" src="../../img/HololensNavigation_VS2019_Build_HoloLens2_Arm64.png" /></p>
+<p><strong>Full deployment instructions</strong> are detailed on this webpage:</p>
+<p><strong>https://docs.microsoft.com/en-us/windows/mixed-reality/develop/platform-capabilities-and-apis/using-visual-studio</strong></p>
+<p>After launching the application in the visor, a visible mesh of the immediate environment will begin to fill in as the device is moved through the area.<br />
+- <strong>air-tap</strong> to toggle between <strong>wirefreame</strong> and <strong>solid model</strong> render mode</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
