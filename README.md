@@ -144,7 +144,7 @@ The following step-by-step procedure provides a guide for performing the calibra
 
 On the Navigation PC, open your favorite web browser and follow these steps to perform an automatic static calibration and save the data in a text file:
 
-![HololensNavigation Dashboard UI](/img/HololensNavigation_DashboardUI.png) 
+![HololensNavigation Dashboard UI](img/HololensNavigation_DashboardUI.png) 
 
 - navigate to http://localhost:8000
 - Confirm that all the Required ROS Nodes listed in the UI are running
@@ -161,13 +161,13 @@ Once the system is running and configured, it is ready to perform navigation ope
   ```
 - RVIZ will launch showing the 2D map file with a simulated model of the Pepper robot.
 
-  ![HololensNavigation RVIZ Launch](/img/HoloLensNavigation_RVIZ_NavSpace.png) 
+  ![HololensNavigation RVIZ Launch](img/HoloLensNavigation_RVIZ_NavSpace.png) 
 
 - Use the application GUI to load the [pepper.rviz](rviz/pepper.rviz) rviz configuration file.
 
 - In the RVIZ GUI, click the **2D Pose Estimate** button and set Pepper's inital position and direction on the map by right-clicking and dragging across the map. The initial position is indicated by the mouse-down click and the direction is calculated from the relative positions of the mouse-down and then mouse-up points on the map.  The position must be precise enough to ensure the map data is in harmony with live data coming from the robot's spatial sensors. If the position is within the precision threshold, the script will calculate a pose estimate and localize the Pepper model on the map.
 
-  ![HololensNavigation RVIZ 2D Pose Estimate](/img/HoloLensNavigation_RVIZ_2DPoseEst.png) 
+  ![HololensNavigation RVIZ 2D Pose Estimate](img/HoloLensNavigation_RVIZ_2DPoseEst.png) 
 
 - In the RVIZ GUI,  click the **2D Nav Goal** button and select a destination goal and direction for the robot on the map in the same manner used to set the initial 2D Pose Estimate.
 
