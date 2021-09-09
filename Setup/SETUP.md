@@ -193,22 +193,19 @@ The following configuration settings support development on the HoloLens device.
 -   The first time the portal is accessed, you will be required to set up a username and password as instructed.  The **Views/Apps** page should will look something like this:
 ![HololensNavigation Device Portal](../img/HololensNavigation_DevicePortal.png) 
 
-
-
-
-## Build PC
+# Build PC
 This section is a guide for the software required to be installed, built and configured on the Build PC.
 
-### OS and Pre-requisites
+## OS and Pre-requisites
 
 To match the platform we test with, prepare an x64 Build PC meeting the minimum hardware requirements of the **Microsoft Windows 10** operating system.
 
-### Visual Studio 2019
+## Visual Studio 2019
 **Microsoft Visual Studio 2019** is required to build and deploy the sample HoloLensSpatialMapping application used on the HoloLens device. Download and install the free community version (at minimum) following the instructions on the following website and selecting options to support the **Universal Windows Platform build environment**:
 
 **https://visualstudio.microsoft.com/downloads/**
 
-### HoloLens Spatial Mapping application (Windows)
+## HoloLens Spatial Mapping application (Windows)
 The Visual Studio solution file has all the project dependencies configured to make the system ready to build and deploy the application ***MSRHoloLensSpatialMapping*** onto the HoloLens device. Clone this repository with your favorite git tools or download and extract the the files into a convenient folder on the Build PC.
 
 ![Open VS Solution](../img/HololensNavigation_VS2019_OpenSolution.png)
@@ -233,7 +230,6 @@ Some NuGet packages are missing from this solution...
 ``` 
 
 Fix it by clicking on the **Restore** button that appears in the UI to download and install the missing **Eigen v3.3.3** package.
-
 
 Build and deploy the application to the HoloLens device by clicking the green triangle ![green triangle](../img/HololensNavigation_VS2019_BuildButton.png) build button or selecting ***Build -> Build Solution*** from the menu.
 
