@@ -1,3 +1,0 @@
-flask==1.1.2
-gevents==21.1.2
-gevent-websocket==0.10.1
