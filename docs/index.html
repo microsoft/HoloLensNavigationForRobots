@@ -52,28 +52,215 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
-            <li><a href="#commands">Commands</a></li>
-            <li><a href="#project-layout">Project layout</a></li>
+        <li class="main active"><a href="#microsoft-applied-robotics-research-library">Microsoft Applied Robotics Research Library</a></li>
+            <li><a href="#open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</a></li>
+        <li class="main "><a href="#hololens-navigation-for-robots">HoloLens Navigation for Robots</a></li>
+            <li><a href="#who-might-be-interested-in-using-this-repository">Who might be interested in using this repository?</a></li>
+        <li class="main "><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#hardware-devices">Hardware Devices:</a></li>
+            <li><a href="#sample-software-modules">Sample Software Modules:</a></li>
+            <li><a href="#other-software-modules">Other Software Modules</a></li>
+        <li class="main "><a href="#modes-of-operation">Modes of Operation</a></li>
+            <li><a href="#map-capture-and-generation-mode">Map Capture and Generation Mode</a></li>
+            <li><a href="#position-calibration-mode">Position Calibration Mode</a></li>
+            <li><a href="#navigation-mode">Navigation Mode</a></li>
+        <li class="main "><a href="#system-build-and-installation">System Build and Installation</a></li>
+            <li><a href="#setup-instructions">Setup Instructions</a></li>
+            <li><a href="#map-generation-instructions">Map Generation Instructions</a></li>
+            <li><a href="#hololens-mounting-and-pepper-configuration-instructions">HoloLens Mounting and Pepper Configuration Instructions</a></li>
+        <li class="main "><a href="#calibration-and-navigation-operations">Calibration and Navigation Operations</a></li>
+            <li><a href="#launch-system">Launch System</a></li>
+            <li><a href="#perform-calibration">Perform Calibration</a></li>
+            <li><a href="#navigation-operations">Navigation Operations</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h2 id="microsoft-applied-robotics-research-library"><img alt="logo" src="img/MARR_logo.png" /> <a href="https://special-giggle-b26bab5f.pages.github.io/">Microsoft Applied Robotics Research Library</a></h2>
+<h3 id="open-source-samples-for-service-robotics">Open Source Samples for Service Robotics</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a> </p>
+<h1 id="hololens-navigation-for-robots">HoloLens Navigation for Robots</h1>
+<p>Welcome! The example system in this repository shows how a <a href="https://www.microsoft.com/en-us/hololens"><strong>HoloLens</strong></a> device can be placed on the head of <a href="https://us.softbankrobotics.com/pepper"><strong>Pepper robot</strong></a> and provide it with a self-calibrating indoor navigation solution. The calibration process is described in detail in the paper: <a href="https://www.cvl.iis.u-tokyo.ac.jp/data/uploads/papers/Ishikawa_SLAMDevice_ROMAN2019.pdf"><strong>Dynamic Calibration between a Mobile Robot and SLAM Device for Navigation</strong></a> and is demonstrated in the video below <strong><em>(click image to download video)</em></strong> <strong>:</strong></p>
+<p><a href="https://github.com/microsoft/HoloLensNavigationForRobots/raw/main/img/ICRA18_1498_VI_i.mp4" title="Project Video"><img alt="Project Video" src="img/HoloLensNavigation_ICRA18_1498_VI_i.png" /></a></p>
+<h2 id="who-might-be-interested-in-using-this-repository">Who might be interested in using this repository?</h2>
+<p>The HoloLens Navigation For Robots project is an example system that exposes key technology challenges in helping robots get where they need to be. Its purpose is to support research and education in the field of <strong><em>Indoor Robot Navigation</em></strong> with an instruction guide for building a sample navigation software system that runs on off-the-shelf hardware components and lends itself to modifications and experimentation. Its function is to measure environmental parameters with 3D spatial sensors to compute and calibrate the position of a robot's mobile base relative to a HoloLens device attached to its head to enable the use of the generic ROS indoor navigation solution for service robots. The designation <strong>"service-robot"</strong> refers to a requirement that it is designed to safely operate in the midst of humans, as opposed to an <strong>"industrial-robot"</strong> that usually repeats tasks within a cordoned-off safety zone. The HoloLens Navigation for Robots repository was adapted from a project originally created by interns working for Microsoft Research Asia. We've built on their work and put together this repository and instruction set to help students learn with a fun hand's-on project that provides exposure to key technologies used in service-robotics. Researchers in the field of autonomous navigation can use the repository to support experimentation in the use of intelligent solutions for route-planning and hazard-avoidance.</p>
+<p>No matter where your interest lies, we hope you find the HoloLens Navigation for Robots repository a fun and easy way to work and learn in the field of robotics.</p>
+<h1 id="how-it-works">How It Works</h1>
+<p>The system is comprised of three primary hardware components that run the software code modules and navigation operations: a Pepper robot, a HoloLens device, networked together with and bridged to the ROS navigation solution running on a Navigation PC. Additionally, a Build PC running  Windows 10 is required to compile and deploy this project's sample application onto the HoloLens device. </p>
+<p><img alt="HoloLensNavigation System Hardware" src="img/HoloLensNavigation_HardwarePhoto.png" /></p>
+<p>The system operates in one of three modes: 
+- Map Capture
+- Calibration
+- Navigation  </p>
+<p>In the map capture mode, the system takes the 3D environment captured by the HoloLens device and converts it into a 2D map image compatible with the built-in ROS navigation solution. In the calibration mode, the system animates the robot and calculates the position of the HoloLens device mounted on the Pepper robot's head relative to the position of the robot's base, which contains the motorized wheels. In the navigation mode, the system uses the dynamic position of the HoloLens device in the navigation space to indicate the position of the robot's mobile base, which is driven by the ROS navigation solution based on plans computed in response to goal points indicated by the user on a 2D map.</p>
+<h2 id="hardware-devices">Hardware Devices:</h2>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
+<li>
+<p><strong>HoloLens (ver. 1 or 2)</strong> - battery-powered mobile computer hosting camera and depth sensors used for map capture and localization</p>
+</li>
+<li>
+<p><strong>Navigation PC (Ubuntu 18.04)</strong> - x64 PC hosting ROS (Melodic) navigation solution, calibration, and operational scripts</p>
+</li>
+<li>
+<p><strong>Pepper robot</strong> - battery-powered semi-humanoid robot capable of indoor locomotion and independent movement of head and body parts</p>
+</li>
+<li>
+<p><strong>Build PC (Windows 10)</strong> - x64 PC hosting Visual Studio 2019 solution for building and deploying the HoloLensNavigation UWP app on the HoloLens device</p>
+</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h2 id="sample-software-modules">Sample Software Modules:</h2>
+<ul>
+<li>
+<p><strong>HoloLensSpatialMapping</strong> - Universal Windows Platform (UWP) application solution for HoloLens. It contains two projects:</p>
+</li>
+<li>
+<p><strong>HololensSpatialMapping</strong> - Uses device sensors to capture and maintain 3D map of local environment</p>
+</li>
+<li>
+<p><strong>HoloLensBridge</strong>  - Communication link with ROS system running on the PC</p>
+</li>
+<li>
+<p><strong>hololens_localizer</strong> - Custom ROS (Melodic) package that computes the local position of the robot base using sensor measurements as the robot moves through calibrated poses and navigates through the environment. During offline calibration, it computes the relative positions of the HoloLens device on the robot's head and the robot's base</p>
+</li>
+<li>
+<p><strong>static_calibration</strong> - node calculates the transform offset between the HoloLens device and the Pepper robot's base and stores it in the <strong>calibration file</strong></p>
+</li>
+<li>
+<p><strong>dynamic_adjuster</strong> - node that monitors the neck joint positions of the robot and adjusts the transform offset between the HoloLens device and the robot base as needed.</p>
+</li>
+<li>
+<p><strong>anchor_localizer</strong> - node that provides the calculated dynamic position of the robot mobile base relative to the 2D navigation map</p>
+</li>
+<li>
+<p><strong>hololens_ros_bridge</strong> - Custom ROS (Melodic) package providing IP communication between the HoloLens device and the ROS system</p>
+</li>
+<li>
+<p><strong>holo_nav_dash</strong> - Custom ROS (Melodic) package providing a local http server and a browser-based operational interface for starting up and monitoring calibration and navigation operations</p>
+</li>
+<li>
+<p><strong>navigation_launcher</strong> - Custom ROS (Melodic) package that contains launch scripts for starting up components for the HoloLens stack, the HoloLens Navigation stack, and the ROS Navigation stack</p>
+</li>
+</ul>
+<h2 id="other-software-modules">Other Software Modules</h2>
+<ul>
+<li>
+<p><a href="https://wiki.ros.org/map_server"><strong>map_server</strong></a> - built-in ROS node that stores and serves data requests from the map asset</p>
+</li>
+<li>
+<p><a href="https://wiki.ros.org/image_view"><strong>image_view</strong></a> - built-in ROS node for viewing image topics and provides the image_saver tool for capturing a graphic image file of the map</p>
+</li>
+<li>
+<p><a href="https://wiki.ros.org/rviz"><strong>rviz</strong></a> - built-in ROS node for navigation operations</p>
+</li>
+<li>
+<p><a href="https://wiki.ros.org/move_base"><strong>move_base</strong></a> - built-in ROS node providing an implementation of an action that, given a pose (position) goal on the map using rviz, will attempt to reach it by sending movement commands to the robot's mobile base</p>
+</li>
+<li>
+<p><a href="https://wiki.ros.org/global_planner"><strong>global_planner</strong></a> - built-in ROS node that give a current position and a goal postion on a 2D map, calculates a route through obstacles indicated on the map</p>
+</li>
+<li>
+<p><a href="https://wiki.ros.org/base_local_planner"><strong>base_local_planner</strong></a> - built-in ROS node calculates the motor control commands to send to the base in order to follow a route calculated by the global planner</p>
+</li>
+<li>
+<p><a href="https://developer.softbankrobotics.com/pepper-naoqi-25"><strong>Pepper Naoqi Stack</strong></a> - Pepper SDK software providing IP communication nodes between the PC and the Pepper robot, as well as a pose_manager node that interprets movement requests into hardware joint motor commands</p>
+</li>
+</ul>
+<h1 id="modes-of-operation">Modes of Operation</h1>
+<p>The system operates in one of three modes: map generation, position calibration, and navigation.</p>
+<h2 id="map-capture-and-generation-mode">Map Capture and Generation Mode</h2>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_MapCapture.png" /></p>
+<p>The purpose of this mode is to create a 2D floorplan of the navigable indoor space. First, the HoloLensNavigation application is run on the HoloLens device while the user scans the indoor space to be navigated by methodically moving it throughout the location.  The camera and depth sensors in the device are used to capture and store a 3D spatial map of the room and adjacent areas.</p>
+<p>After capture, the 3D spatial map must be converted to the 2D floor-plan map form used by the ROS navigation solution. The conversion is accomplished by first launching the hololens_ros_bridge, hololens_localizer, map_server, image_view, and rviz ROS nodes on the PC. The point cloud from the HoloLens spatial map is made available to the ROS system through the hololens_ros_bridge.</p>
+<p>After the ROS nodes are running, rviz is instructed to use the image_view node and the "2D Pose Estimate" process to create a cross-section of the HoloLens' spatial map six inches above and parallel to the floor plane and then save it as a 2D point-cloud image in a JPG file. Using any image editing application, the 2D point cloud is then manually cleaned up to produce a ROS-compliant floorplan navigation map image.</p>
+<h2 id="position-calibration-mode">Position Calibration Mode</h2>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_PositionCalibration.png" /></p>
+<p>The purpose of this mode is to create a static calibration file that defines the relative positions of the Hololens device mounted on the Pepper robot's head and the robot's base containing movement wheels and motors. The HoloLensNavigation app connects to the hololens_ros_bridge node running on the Operations PC and provides spatial anchors representing the current position of the HoloLens device within the 3D map space.</p>
+<p>On the PC, the Dashboard UI is launched with the holo_nav_dash ROS node and a local http server providing access to data from other ROS nodes as well as Naoqi protocol commands that are sent to the Pepper robot. Buttons are provided in the UI that command the Pepper head to move to specific positions and record sensor readings for use in calculating a static relationship between the position of the robot base and the HoloLens mounted on the robot's head and then store it in a calibration file.</p>
+<h2 id="navigation-mode">Navigation Mode</h2>
+<p><img alt="HololensNavigation System Diagram" src="img/HololensNavigation_SystemDiagram_Mode_Navigation.png" />
+This is the operational mode for navigation. In this mode all the nodes are running. On the Hololens, the HoloLensNavigation app connects to the hololens_ros_bridge node running on the Operations PC and constantly updates spatial anchors for the position of the HoloLens device and dynamic changes in the 3D environment.</p>
+<p>Through the hololens_ros_bridge, the hololens_localizer nodes monitor the spatial anchor for the HoloLens device and use the static calibration file to constantly calculate and update the relative position of the Pepper robot's base.</p>
+<p>The ROS navigation stack presents a user interface through the built-in RVIZ application. The RVIZ application is configured to dynamically render the simulated robot's position and spatial sensor data on the 2D navigation map. The RVIZ UI is used to manually position the robot on the navigation map to set an initial "2D Pose Estimate" (2D position and polar direction). Checking that the set position agrees with dynamic sensor data within a tolerance threshold, the ROS navigation stack becomes prepared to accept goal positions.  The RVIZ UI is now used used to set a "2D Nav Goal" on the navigation map. When a navigation goal is received, the move_base node links the local_planner and global_planner nodes to steer and drive the robot's wheels toward the goal until the spatial anchor from the hololens_localizer shows that it has arrived at the destination. </p>
+<h1 id="system-build-and-installation">System Build and Installation</h1>
+<p>The following links provide guides for preparing the system.  They include hardware mounting and configuration, software platform prerequisites, and build and installation instructions.</p>
+<ul>
+<li>
+<h2 id="setup-instructions"><a href="Setup/SETUP/">Setup Instructions</a></h2>
+</li>
+<li>
+<h2 id="map-generation-instructions"><a href="Setup/MAP_GENERATION/">Map Generation Instructions</a></h2>
+</li>
+<li>
+<h2 id="hololens-mounting-and-pepper-configuration-instructions"><a href="Setup/CONFIGURATION/">HoloLens Mounting and Pepper Configuration Instructions</a></h2>
+</li>
+</ul>
+<h1 id="calibration-and-navigation-operations">Calibration and Navigation Operations</h1>
+<p>The following step-by-step procedure provides a guide for performing the calibration process and commanding the Pepper robot to navigate its way around the space represented by the map.  <strong><em>The procedure assumes that all of the previous sections' setup and configuration instructions have been completed and a 2D floor map has already been generated and installed in the system</em></strong>.</p>
+<h2 id="launch-system">Launch System</h2>
+<h3 id="hololens-stack">HoloLens Stack</h3>
+<ul>
+<li>(HoloLens) Launch HoloLens Bridge<ul>
+<li>Start the HoloLensNavigation application from the browser-hosted <strong>Device Portal</strong> or alternatively launch it from the device's in-visor Start menu</li>
+</ul>
+</li>
+<li>
+<p>(Navigation PC) Launch Pepper's stack</p>
+<ul>
+<li>The <strong>network interface</strong> name for the local ROS computer can be found using the terminal command "ifconfig" and looking for the name associated with the active IP address. <strong><em>Do not include the colon after the network interface</em></strong>.</li>
+<li>The <strong>pepper ip</strong> address for the robot will be verbally reported when the button on the front of the torso and behind the bottom edge of the tablet is tapped. </li>
+</ul>
+<p><code>$ roslaunch pepper_bringup pepper_full.launch nao_ip:=&lt;pepper ip&gt; network_interface:=&lt;network interface&gt;</code></p>
+</li>
+<li>
+<p>(Navigation PC) Launch HoloLens Stack</p>
+<ul>
+<li>The <strong>hololens ip</strong> value is obtained from the address bar in the browser hosting the <strong>Device Portal</strong> or from the device's in-visor Settings menu
+  <code>$ roslaunch navigation_launcher hololensstack.launch HoloLens_ip:=&lt;hololens ip&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="navigation-stack">Navigation Stack</h3>
+<ul>
+<li>(Navigation PC) Launch ROS Navigation System
+    <code>$ roslaunch navigation_launcher navstack.launch</code></li>
+</ul>
+<h3 id="dashboard-ui">Dashboard UI</h3>
+<ul>
+<li>(Navigation PC) Launch the Dashboard User Interface
+    <code>$ rosrun holo_nav_dash holo_nav_dash.py</code></li>
+</ul>
+<h2 id="perform-calibration">Perform Calibration</h2>
+<p>On the Navigation PC, open your favorite web browser and follow these steps to perform an automatic static calibration and save the data in a text file:</p>
+<p><img alt="HololensNavigation Dashboard UI" src="/img/HololensNavigation_DashboardUI.png" /> </p>
+<ul>
+<li>navigate to http://localhost:8000</li>
+<li>Confirm that all the Required ROS Nodes listed in the UI are running</li>
+<li>Click the <strong>"Auto HoloLens Calibration"</strong> button in the UI</li>
+<li>Observe the robot move through the calibration poses and then check the Status window to confirm that a calibration file was successfully saved</li>
+</ul>
+<h2 id="navigation-operations">Navigation Operations</h2>
+<p>Once the system is running and configured, it is ready to perform navigation operations within the physical space represented by the installed map. The following steps start and control navigation:
+- (Navigation PC) Launch ROS RVIZ
+  <code>$  rosrun rviz rviz</code>
+- RVIZ will launch showing the 2D map file with a simulated model of the Pepper robot.</p>
+<p><img alt="HololensNavigation RVIZ Launch" src="/img/HoloLensNavigation_RVIZ_NavSpace.png" /> </p>
+<ul>
+<li>
+<p>Use the application GUI to load the <a href="rviz/pepper.rviz">pepper.rviz</a> rviz configuration file.</p>
+</li>
+<li>
+<p>In the RVIZ GUI, click the <strong>2D Pose Estimate</strong> button and set Pepper's inital position and direction on the map by right-clicking and dragging across the map. The initial position is indicated by the mouse-down click and the direction is calculated from the relative positions of the mouse-down and then mouse-up points on the map.  The position must be precise enough to ensure the map data is in harmony with live data coming from the robot's spatial sensors. If the position is within the precision threshold, the script will calculate a pose estimate and localize the Pepper model on the map.</p>
+</li>
+</ul>
+<p><img alt="HololensNavigation RVIZ 2D Pose Estimate" src="/img/HoloLensNavigation_RVIZ_2DPoseEst.png" /> </p>
+<ul>
+<li>In the RVIZ GUI,  click the <strong>2D Nav Goal</strong> button and select a destination goal and direction for the robot on the map in the same manner used to set the initial 2D Pose Estimate.</li>
+</ul>
+<p><img alt="HololensNavigation RVIZ 2D Nav Goal" src="/img/HoloLensNavigation_RVIZ_2DNavGoal.png" /> </p>
+<ul>
+<li>If a valid path can be calculated by the ROS Navigation Stack, the  robot will be begin navigation and movement to the goal position.</li>
+<li>Once arrived or before arriving at the destination, a new <strong>2D Nav Goal</strong> can be specified with the RVIZ GUI and the robot will stop moving to the previous goal position and proceed to the new destination.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -156,5 +343,5 @@ docs/
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2021-09-09 22:34:23
+Build Date UTC : 2021-09-09 22:41:50
 -->
