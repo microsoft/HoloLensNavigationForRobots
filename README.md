@@ -171,7 +171,7 @@ Once the system is running and configured, it is ready to perform navigation ope
 
 - In the RVIZ GUI,  click the **2D Nav Goal** button and select a destination goal and direction for the robot on the map in the same manner used to set the initial 2D Pose Estimate.
 
-  ![HololensNavigation RVIZ 2D Nav Goal](/img/HoloLensNavigation_RVIZ_2DNavGoal.png) 
+  ![HololensNavigation RVIZ 2D Nav Goal](img/HoloLensNavigation_RVIZ_2DNavGoal.png) 
 
 - If a valid path can be calculated by the ROS Navigation Stack, the  robot will be begin navigation and movement to the goal position.
 - Once arrived or before arriving at the destination, a new **2D Nav Goal** can be specified with the RVIZ GUI and the robot will stop moving to the previous goal position and proceed to the new destination.
