@@ -45,8 +45,8 @@ application. Alternatively wear the headset and launch from GUI, or launch from 
   direction. This instructs image_saver to create a cross-section of the HoloLens' spatial map and save it as  ***left000.jpg*** in the same folder the **image_saver** node was launched from.
 - open the output graphic file and edit for navigation
     - open the file ***left0000.jpg***` with your favorite image editor. It will appear as a pattern of dots filtered by the 2D cross section of the 3D point cloud
-    ![raw point cloud cross-section](/img/left0001.jpg)
+    ![raw point cloud cross-section](../img/left0001.jpg)
     
     - using the depicted pointcloud outline, create a ROS compliant image map.
-    ![cleaned-up cross-section map](/img/Map_Floor1_BW.bmp)
+    ![cleaned-up cross-section map](../img/Map_Floor1_BW.bmp)
     - save the modified ***left0000.jpg*** file in the folder: **~/catkin_ws/src/navigation_launcher/params/**
